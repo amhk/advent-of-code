@@ -35,10 +35,6 @@ dependencies = [
 [[package]]
 name = "aoc-2020-12-05"
 version = "0.1.0"
-dependencies = [
- "lazy_static",
- "regex",
-]
 
 [[package]]
 name = "aoc-2020-12-06"

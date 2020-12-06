@@ -8,49 +8,13 @@ fn main() {
     println!("part 2: {}", answer);
 }
 
-#[derive(Debug, Eq, PartialEq)]
-enum Op {
-    Lower,
-    Upper,
-}
-
-fn binary_space_partition(input: &[Op]) -> u32 {
-    let mut min = 0;
-    let mut max = 2_u32.pow(input.len() as u32) - 1;
-    for op in input {
-        let mid = (max - min) / 2 + min;
-        match op {
-            Op::Lower => max = mid,
-            Op::Upper => min = mid + 1,
-        }
-    }
-    min
-}
-
-fn parse_input(input: &str, lower: char, upper: char) -> Result<Vec<Op>, ()> {
-    assert_ne!(lower, upper);
-    let mut v = Vec::new();
-    for ch in input.chars() {
-        let op = match ch {
-            x if x == lower => Op::Lower,
-            x if x == upper => Op::Upper,
-            _ => return Err(()),
-        };
-        v.push(op);
-    }
-    Ok(v)
-}
-
 fn str_to_seat_id(line: &str) -> u32 {
-    assert_eq!(line.len(), 10);
-
-    let ops = parse_input(&line[0..7], 'F', 'B').unwrap();
-    let row = binary_space_partition(&ops);
-
-    let ops = parse_input(&line[7..10], 'L', 'R').unwrap();
-    let col = binary_space_partition(&ops);
-
-    row * 8 + col
+    let line = line
+        .replace('F', "0")
+        .replace('B', "1")
+        .replace('L', "0")
+        .replace('R', "1");
+    u32::from_str_radix(&line, 2).unwrap()
 }
 
 fn part_one(input: &str) -> u32 {
@@ -79,30 +43,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_binary_space_partition() {
-        assert_eq!(
-            binary_space_partition(&vec![Op::Upper, Op::Lower, Op::Upper]),
-            5
-        );
-        assert_eq!(
-            binary_space_partition(&vec![
-                Op::Lower,
-                Op::Upper,
-                Op::Lower,
-                Op::Upper,
-                Op::Upper,
-                Op::Lower,
-                Op::Lower
-            ]),
-            44
-        );
-    }
-
-    #[test]
-    fn test_parse_input() {
-        assert_eq!(
-            parse_input("ab", 'a', 'b').unwrap(),
-            vec![Op::Lower, Op::Upper]
-        );
+    fn test_str_to_seat_id() {
+        assert_eq!(str_to_seat_id("BFFFBBFRRR"), 567);
+        assert_eq!(str_to_seat_id("FFFBBBFRRR"), 119);
+        assert_eq!(str_to_seat_id("BBFFBBFRLL"), 820);
     }
 }

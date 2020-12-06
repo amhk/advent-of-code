@@ -28,7 +28,7 @@ fn part_one(input: &str) -> Result<u32, ()> {
             }
         }
     }
-    return Err(());
+    Err(())
 }
 
 fn part_two(input: &str) -> Result<u32, ()> {
@@ -45,7 +45,7 @@ fn part_two(input: &str) -> Result<u32, ()> {
             }
         }
     }
-    return Err(());
+    Err(())
 }
 
 #[cfg(test)]

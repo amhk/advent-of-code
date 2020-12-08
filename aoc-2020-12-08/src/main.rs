@@ -190,7 +190,7 @@ fn part_two(input: &str) -> i64 {
 mod tests {
     use super::*;
 
-    const INPUT: &str = include_str!("test_input.txt");
+    const INPUT: &str = include_str!("test-input.txt");
 
     #[test]
     fn test_program_from_str() {

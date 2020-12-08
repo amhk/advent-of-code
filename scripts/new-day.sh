@@ -27,7 +27,7 @@ sed -i "s/^    # <template>/    \"${name}\",\n    # <template>/" Cargo.toml
 
 # - Input and test input
 mkdir -p "${name}/src"
-touch "${name}"/src/{,test_}input.txt
+touch "${name}"/src/{,test-}input.txt
 
 # - <day>/Cargo.toml
 cat >"${name}/Cargo.toml" <<EOF
@@ -66,7 +66,7 @@ fn part_two(input: &str) -> i64 {
 mod tests {
     use super::*;
 
-    const INPUT: &str = include_str!("test_input.txt");
+    const INPUT: &str = include_str!("test-input.txt");
 
     #[test]
     fn test_part_one() {

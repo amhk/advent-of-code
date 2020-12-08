@@ -143,7 +143,7 @@ fn part_two(input: &str) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT: &str = include_str!("test_input.txt");
+    const INPUT: &str = include_str!("test-input.txt");
 
     #[test]
     fn test_parse_input() {

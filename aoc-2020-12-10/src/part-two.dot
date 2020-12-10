@@ -1,0 +1,40 @@
+digraph G {
+    rankdir="LR";
+
+    node[width=0.15, height=0.15, shape=rectangle];
+    a0 [ label = "0\n8" ];
+    a1 [ label = "1\n8" ];
+    a4 [ label = "4\n4 + 2 + 2 = 8" ];
+    a5 [ label = "5\n2 + 2 = 4" ];
+    a6 [ label = "6\n2" ];
+    a7 [ label = "7\n2" ];
+    a10 [ label = "10\n1 + 1 = 2" ];
+    a11 [ label = "11\n1" ];
+    a12 [ label = "12\n1" ];
+    a15 [ label = "15\n1" ];
+    a16 [ label = "16\n1" ];
+    a19 [ label = "19\n1" ];
+    a22 [ label = "22\n1" ];
+
+    edge[weight=20, arrowsize=0.5];
+    a0 -> a1;
+    a1 -> a4;
+    a4 -> a5;
+    a5 -> a6;
+    a6 -> a7;
+    a7 -> a10;
+    a10 -> a11;
+    a11 -> a12;
+    a12 -> a15;
+    a15 -> a16;
+    a16 -> a19;
+    a19 -> a22;
+
+    edge[weight=1];
+    a4 -> a6;
+    a4 -> a7;
+
+    a5 -> a7;
+
+    a10 -> a12;
+}

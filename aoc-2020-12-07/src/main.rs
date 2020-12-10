@@ -78,8 +78,8 @@ fn recurse(bags: &HashMap<ID, Bag>, id: &str) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT_A: &str = include_str!("test_input_a.txt");
-    const INPUT_B: &str = include_str!("test_input_b.txt");
+    const INPUT_A: &str = include_str!("test-input-a.txt");
+    const INPUT_B: &str = include_str!("test-input-b.txt");
 
     #[test]
     fn test_part_one() {

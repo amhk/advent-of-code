@@ -50,10 +50,10 @@ struct Node {
     count: u64,
 }
 
-fn node_offset(node: Option<&Node>, offset_from: u64) -> Option<&Node> {
+fn try_skip_to_node(node: Option<&Node>, from_jolt: u64) -> Option<&Node> {
     node.and_then(|node| {
-        assert!(offset_from < node.jolt);
-        match node.jolt - offset_from {
+        assert!(from_jolt < node.jolt);
+        match node.jolt - from_jolt {
             1 | 2 | 3 => Some(node),
             _ => None,
         }
@@ -71,10 +71,11 @@ fn part_two(input: &str) -> Result<u64, Error> {
 
     for i in (0..nodes.len() - 1).rev() {
         let node = nodes.get(i).unwrap();
-        let a = node_offset(nodes.get(i + 1), node.jolt).map_or(0, |n| n.count);
-        assert!(a > 0);
-        let b = node_offset(nodes.get(i + 2), node.jolt).map_or(0, |n| n.count);
-        let c = node_offset(nodes.get(i + 3), node.jolt).map_or(0, |n| n.count);
+        let a = try_skip_to_node(nodes.get(i + 1), node.jolt)
+            .map(|n| n.count)
+            .expect("the immediately following adapter must be compatible");
+        let b = try_skip_to_node(nodes.get(i + 2), node.jolt).map_or(0, |n| n.count);
+        let c = try_skip_to_node(nodes.get(i + 3), node.jolt).map_or(0, |n| n.count);
 
         let node = nodes.get_mut(i).unwrap();
         node.count = a + b + c;

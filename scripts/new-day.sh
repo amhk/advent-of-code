@@ -47,18 +47,23 @@ cat >"${name}/src/main.rs" <<EOF
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input);
+    let answer = part_one(&input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input);
+    let answer = part_two(&input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
-fn part_one(input: &str) -> i64 {
+#[derive(Debug, PartialEq)]
+enum Error {
+    BadInput,
+}
+
+fn part_one(input: &str) -> Result<usize, Error> {
     todo!();
 }
 
-fn part_two(input: &str) -> i64 {
+fn part_two(input: &str) -> Result<usize, Error> {
     todo!();
 }
 
@@ -70,12 +75,12 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(part_one(INPUT), 0);
+        assert_eq!(part_one(INPUT), Ok(0));
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(part_two(INPUT), 0);
+        assert_eq!(part_two(INPUT), Ok(0));
     }
 }
 EOF

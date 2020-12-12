@@ -1,4 +1,4 @@
-#![allow(dead_code, unused_variables)]
+use std::collections::HashMap;
 
 fn main() {
     let input = include_str!("input.txt");
@@ -15,190 +15,133 @@ enum Error {
     BadInput,
 }
 
-#[derive(Debug, PartialEq, Copy, Clone)]
-enum Cell {
-    Border,
-    Floor,
-    EmptySeat,
-    TakenSeat,
+#[derive(Debug, Clone, PartialEq)]
+enum State {
+    Vacant,
+    Occupied,
 }
 
-struct Area {
-    seats: Vec<Cell>,
-    row_len: usize,
+#[derive(Debug, Clone)]
+struct Seat {
+    state: State,
+    neighbors: Vec<usize>,
 }
 
-impl Area {
-    fn new(input: &str) -> Result<Area, Error> {
-        let mut seats = Vec::new();
-        let mut row_len = 0;
+fn parse_input(input: &str, horizon: usize) -> Result<Vec<Seat>, Error> {
+    const VECTORS: &[(isize, isize)] = &[
+        (-1, -1), // nw
+        (0, -1),  // n
+        (1, -1),  // ne
+        (-1, 0),  // w
+        (1, 0),   // e
+        (-1, 1),  // sw
+        (0, 1),   // s
+        (1, 1),   // se
+    ];
 
-        for line in input.lines() {
-            // sanity check, add padding before first row
-            let line_len = line.len();
-            assert!(line_len > 0);
-            match row_len {
-                0 => {
-                    row_len = line_len + 2;
-                    for _ in 0..row_len {
-                        seats.push(Cell::Border);
-                    }
-                }
-                _ => {
-                    if line_len + 2 != row_len {
-                        return Err(Error::BadInput);
-                    }
-                }
+    // the seats
+    let count = input.chars().filter(|&ch| ch == 'L').count();
+    let mut seats = vec![
+        Seat {
+            state: State::Vacant,
+            neighbors: Vec::new()
+        };
+        count
+    ];
+
+    // coordinates -> index into seats vec
+    let mut map = HashMap::<(isize, isize), usize>::new();
+    let mut index = 0;
+    for (y, line) in input.lines().enumerate() {
+        for (x, ch) in line.chars().enumerate() {
+            if ch == 'L' {
+                map.insert((x as isize, y as isize), index);
+                index += 1;
             }
-
-            // add line, with padding before and after
-            seats.push(Cell::Border);
-            for ch in line.chars() {
-                match ch {
-                    '.' => seats.push(Cell::Floor),
-                    'L' => seats.push(Cell::EmptySeat),
-                    _ => return Err(Error::BadInput),
-                }
-            }
-            seats.push(Cell::Border);
         }
-
-        // add padding after last row
-        for _ in 0..row_len {
-            seats.push(Cell::Border);
-        }
-
-        Ok(Area { seats, row_len })
     }
 
-    fn assign_seats(&mut self, threshold_croweded: usize, horizon: Option<usize>) {
-        loop {
-            let mut copy = self.seats.clone();
-            let mut change = false;
-            for (i, cell) in copy.iter_mut().enumerate() {
-                if let Some((seat, n)) = self.neighbours(i, horizon) {
-                    let count = n.iter().filter(|&&c| c == Cell::TakenSeat).count();
-                    if seat == Cell::EmptySeat && count == 0 {
-                        change = true;
-                        *cell = Cell::TakenSeat;
-                    } else if seat == Cell::TakenSeat && count >= threshold_croweded {
-                        change = true;
-                        *cell = Cell::EmptySeat
-                    }
+    // fixup Seat.neighbors
+    let x_max: isize = input.lines().next().unwrap().len() as isize;
+    let y_max: isize = input.lines().count() as isize;
+    for (&(x0, y0), &index) in map.iter() {
+        let seat = seats.get_mut(index).expect("internal error");
+        for (dx, dy) in VECTORS {
+            let (mut x, mut y) = (x0, y0);
+            let mut h = horizon as isize;
+            loop {
+                x += dx;
+                y += dy;
+                h -= 1;
+                if h < 0 || x >= x_max || y < 0 || y >= y_max {
+                    break;
+                }
+                if let Some(&index) = map.get(&(x, y)) {
+                    seat.neighbors.push(index);
+                    break;
                 }
             }
-            self.seats = copy;
-            if !change {
-                return;
-            }
         }
     }
 
-    fn neighbours(&self, index: usize, horizon: Option<usize>) -> Option<(Cell, Vec<Cell>)> {
-        let cell = self.seats[index];
-        if matches!(cell, Cell::Border | Cell::Floor) {
-            return None;
-        }
+    // invariant: each neighboring pair of seats can see each other
+    // so the total number of neighbors must be even
+    assert!(seats.iter().fold(0, |acc, seat| seat.neighbors.len() + acc) % 2 == 0);
 
-        // Default to a horizon larger than the input row/col lengths, but small enough to avoid
-        // overflow issues when casting from usize to i64.
-        let horizon = horizon.unwrap_or(9999);
-        let mut v = Vec::new();
-
-        v.push(self.look_nw(index, horizon));
-        v.push(self.look_n(index, horizon));
-        v.push(self.look_ne(index, horizon));
-
-        v.push(self.look_w(index, horizon));
-        v.push(self.look_e(index, horizon));
-
-        v.push(self.look_sw(index, horizon));
-        v.push(self.look_s(index, horizon));
-        v.push(self.look_se(index, horizon));
-
-        Some((cell, v))
-    }
-
-    fn look<F>(&self, index: usize, horizon: usize, func: F) -> Cell
-    where
-        F: Fn() -> i64,
-    {
-        assert!(horizon > 0);
-        let mut index = index as i64;
-        let mut cell = None;
-        for dist in 1..=horizon as i64 {
-            index += func();
-            cell = Some(self.seats[index as usize]);
-            if cell != Some(Cell::Floor) {
-                break;
-            }
-        }
-        cell.expect("cell should be something")
-    }
-
-    fn look_nw(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || -1 - self.row_len as i64)
-    }
-
-    fn look_n(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || -(self.row_len as i64))
-    }
-
-    fn look_ne(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || 1 - self.row_len as i64)
-    }
-
-    fn look_w(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || -1)
-    }
-
-    fn look_e(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || 1)
-    }
-
-    fn look_sw(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || -1 + self.row_len as i64)
-    }
-
-    fn look_s(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || self.row_len as i64)
-    }
-
-    fn look_se(&self, index: usize, horizon: usize) -> Cell {
-        self.look(index, horizon, || 1 + self.row_len as i64)
-    }
+    Ok(seats)
 }
 
-impl std::fmt::Debug for Area {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let mut s = String::new();
-        self.seats.chunks(self.row_len).for_each(|chunk| {
-            for cell in chunk {
-                s.push(match *cell {
-                    Cell::Border => 'B',
-                    Cell::Floor => '.',
-                    Cell::EmptySeat => 'L',
-                    Cell::TakenSeat => '#',
-                });
-            }
-            s.push('\n');
-        });
-        write!(f, "{}", s)
+fn solve(input: &str, horizon: usize, croweded_threshold: usize) -> Result<usize, Error> {
+    fn neighbor_count(seats: &[Seat], index: usize) -> usize {
+        seats[index]
+            .neighbors
+            .iter()
+            .filter_map(|&index| match seats[index].state {
+                State::Occupied => Some(()),
+                _ => None,
+            })
+            .count()
     }
+
+    let mut seats = parse_input(input, horizon)?;
+    let mut new_states: Vec<State> = vec![State::Vacant; seats.len()];
+
+    loop {
+        let mut change = false;
+        for (index, seat) in seats.iter().enumerate() {
+            let n = neighbor_count(&seats, index);
+            if seat.state == State::Vacant && n == 0 {
+                new_states[index] = State::Occupied;
+                change = true;
+            } else if seat.state == State::Occupied && n >= croweded_threshold {
+                new_states[index] = State::Vacant;
+                change = true;
+            } else {
+                new_states[index] = seat.state.clone();
+            }
+        }
+        for (index, state) in new_states.iter().enumerate() {
+            seats[index].state = state.clone();
+        }
+        if !change {
+            break;
+        }
+    }
+
+    Ok(seats
+        .iter()
+        .filter(|seat| seat.state == State::Occupied)
+        .count())
 }
 
 fn part_one(input: &str) -> Result<usize, Error> {
-    let mut area = Area::new(input)?;
-    area.assign_seats(4, Some(1));
-    let count = area.seats.iter().filter(|&&c| c == Cell::TakenSeat).count();
-    Ok(count)
+    solve(input, 1, 4)
 }
 
 fn part_two(input: &str) -> Result<usize, Error> {
-    let mut area = Area::new(input)?;
-    area.assign_seats(5, None);
-    let count = area.seats.iter().filter(|&&c| c == Cell::TakenSeat).count();
-    Ok(count)
+    let cols = input.lines().next().ok_or(Error::BadInput)?.chars().count();
+    let rows = input.lines().count();
+    solve(input, usize::max(cols, rows) + 1, 5)
 }
 
 #[cfg(test)]
@@ -208,38 +151,30 @@ mod tests {
     const INPUT: &str = include_str!("test-input.txt");
 
     #[test]
-    fn test_look() {
-        let area = Area::new(INPUT).unwrap();
-        const INF: usize = 1000;
-        assert_eq!(area.look_nw(13, INF), Cell::Border);
-        assert_eq!(area.look_n(13, INF), Cell::Border);
-        assert_eq!(area.look_ne(13, INF), Cell::Border);
-        assert_eq!(area.look_w(13, INF), Cell::Border);
-        assert_eq!(area.look_e(13, INF), Cell::EmptySeat);
-        assert_eq!(area.look_sw(13, INF), Cell::Border);
-        assert_eq!(area.look_s(13, INF), Cell::EmptySeat);
-        assert_eq!(area.look_se(13, INF), Cell::EmptySeat);
+    fn test_parse_input() {
+        // input:
+        //   . 0 . 1
+        //   . . . .
+        //   . 2 . .
+        //   . . . 3
+        //   4 . . .
+        let input = ".L.L\n....\n.L..\n...L\nL...\n";
 
-        assert_eq!(area.look_e(13, 1), Cell::Floor);
-    }
+        let seats = parse_input(input, 10).unwrap();
+        assert_eq!(seats.len(), 5);
+        assert_eq!(seats[0].neighbors, vec![1, 2]);
+        assert_eq!(seats[1].neighbors, vec![0, 2, 3]);
+        assert_eq!(seats[2].neighbors, vec![0, 1]);
+        assert_eq!(seats[3].neighbors, vec![1]);
+        assert_eq!(seats[4].neighbors, vec![]);
 
-    #[test]
-    fn test_neighbours_infinite_horizon() {
-        let area = Area::new(INPUT).unwrap();
-        let (cell, n) = area.neighbours(13, None).unwrap();
-        assert_eq!(cell, Cell::EmptySeat);
-        assert_eq!(n.iter().filter(|&&c| c == Cell::Border).count(), 5);
-        assert_eq!(n.iter().filter(|&&c| c == Cell::EmptySeat).count(), 3);
-    }
-
-    #[test]
-    fn test_neighbours_horizon_of_1() {
-        let area = Area::new(INPUT).unwrap();
-        let (cell, n) = area.neighbours(13, Some(1)).unwrap();
-        assert_eq!(cell, Cell::EmptySeat);
-        assert_eq!(n.iter().filter(|&&c| c == Cell::Border).count(), 5);
-        assert_eq!(n.iter().filter(|&&c| c == Cell::EmptySeat).count(), 2);
-        assert_eq!(n.iter().filter(|&&c| c == Cell::Floor).count(), 1);
+        let seats = parse_input(input, 2).unwrap();
+        assert_eq!(seats.len(), 5);
+        assert_eq!(seats[0].neighbors, vec![1, 2]);
+        assert_eq!(seats[1].neighbors, vec![0, 2]);
+        assert_eq!(seats[2].neighbors, vec![0, 1]);
+        assert_eq!(seats[3].neighbors, vec![]);
+        assert_eq!(seats[4].neighbors, vec![]);
     }
 
     #[test]

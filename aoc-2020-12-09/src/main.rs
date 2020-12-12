@@ -26,7 +26,7 @@ fn find_contiguous_slice_with_sum(slice: &[u64], value: u64) -> Option<&[u64]> {
         for j in (i + 1)..slice.len() {
             sum += slice[j];
             if sum == value {
-                return Some(&slice[i + 1..=j])
+                return Some(&slice[i + 1..=j]);
             }
         }
     }

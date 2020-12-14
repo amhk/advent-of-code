@@ -21,13 +21,26 @@ if [[ $(grep -c -e "$name" Cargo.toml) -gt 0 || -e "${name}" ]]; then
     exit 1
 fi
 
+tmpfile=$(mktemp)
+if [[ "${AOC_SESSION}" ]]; then
+    year="${name:4:4}"
+    day="${name:12:2}"
+    url="https://adventofcode.com/${year}/day/${day}/input"
+    curl \
+        -X GET \
+        -H "Cookie: session=${AOC_SESSION}" \
+        -o "${tmpfile}" \
+        "${url}"
+fi
+
 # Point of no return: commence write operations
 # - Cargo.toml
 sed -i "s/^    # <template>/    \"${name}\",\n    # <template>/" Cargo.toml
 
 # - Input and test input
 mkdir -p "${name}/src"
-touch "${name}"/src/{,test-}input.txt
+mv "$tmpfile" "${name}"/src/input.txt
+touch "${name}"/src/test-input.txt
 
 # - <day>/Cargo.toml
 cat >"${name}/Cargo.toml" <<EOF

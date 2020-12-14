@@ -80,20 +80,16 @@ fn floating_addresses(address: u64, mask: &str) -> HashSet<u64> {
             _ => panic!(),
         })
         .collect();
-    fn expand(address: &str, index: usize) -> HashSet<String> {
+    fn expand(address: &str, index: usize) -> Vec<String> {
         for i in index..address.len() {
             if address.chars().nth(i) == Some('X') {
                 let mut zero = expand(&address.replacen('X', "0", 1), i + 1);
-                let one = expand(&address.replacen('X', "1", 1), i + 1);
-                for x in one {
-                    zero.insert(x);
-                }
+                let mut one = expand(&address.replacen('X', "1", 1), i + 1);
+                zero.append(&mut one);
                 return zero;
             }
         }
-        let mut set = HashSet::new();
-        set.insert(address.to_string());
-        set
+        vec![address.to_string()]
     }
     expand(&address, 0)
         .iter()

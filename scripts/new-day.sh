@@ -16,11 +16,6 @@ if ! [[ "$name" =~ ^aoc-[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
     exit 1
 fi
 
-if [[ $(grep -c -e "$name" Cargo.toml) -gt 0 || -e "${name}" ]]; then
-    echo "error: duplicate pattern"
-    exit 1
-fi
-
 tmpfile=$(mktemp)
 if [[ "${AOC_SESSION}" ]]; then
     year="${name:4:4}"
@@ -34,8 +29,6 @@ if [[ "${AOC_SESSION}" ]]; then
 fi
 
 # Point of no return: commence write operations
-# - Cargo.toml
-sed -i "s/^    # <template>/    \"${name}\",\n    # <template>/" Cargo.toml
 
 # - Input and test input
 mkdir -p "${name}/src"

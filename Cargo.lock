@@ -76,6 +76,14 @@ name = "aoc-2020-12-13"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2020-12-14"
+version = "0.1.0"
+dependencies = [
+ "lazy_static",
+ "regex",
+]
+
+[[package]]
 name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

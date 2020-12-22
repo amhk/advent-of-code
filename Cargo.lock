@@ -111,6 +111,10 @@ name = "aoc-2020-12-19"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2020-12-20"
+version = "0.1.0"
+
+[[package]]
 name = "aoc-2020-12-21"
 version = "0.1.0"
 dependencies = [

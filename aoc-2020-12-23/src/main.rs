@@ -62,18 +62,10 @@ fn play_game(initial: &[Id], rounds: usize) -> Vec<Id> {
 
         // find where to insert the three cups
         let find_dest_id = || {
-            let mut dest_id = if head == 1 {
-                max
-            } else {
-                head - 1
-            };
+            let mut dest_id = if head == 1 { max } else { head - 1 };
             let exclude = [a, b, c];
             while exclude.contains(&dest_id) {
-                dest_id = if dest_id == 1 {
-                    max
-                } else {
-                    dest_id - 1
-                };
+                dest_id = if dest_id == 1 { max } else { dest_id - 1 };
             }
             dest_id
         };

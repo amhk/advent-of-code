@@ -74,17 +74,17 @@ fn eyr_valid(s: &str) -> bool {
 }
 
 fn hgt_valid(s: &str) -> bool {
-    if s.ends_with("cm") {
-        let s = &s[..s.len() - 2];
-        s.parse::<u32>()
-            .map_or(false, |height| height >= 150 && height <= 193)
-    } else if s.ends_with("in") {
-        let s = &s[..s.len() - 2];
-        s.parse::<u32>()
-            .map_or(false, |height| height >= 59 && height <= 76)
-    } else {
-        false
+    if let Some(s) = s.strip_suffix("cm") {
+        return s
+            .parse::<u32>()
+            .map_or(false, |height| height >= 150 && height <= 193);
     }
+    if let Some(s) = s.strip_suffix("in") {
+        return s
+            .parse::<u32>()
+            .map_or(false, |height| height >= 59 && height <= 76);
+    }
+    false
 }
 
 fn hcl_valid(s: &str) -> bool {

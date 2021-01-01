@@ -10,22 +10,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-01"
+name = "aoc-2020-01"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-02"
+name = "aoc-2020-02"
 version = "0.1.0"
 dependencies = [
  "regex",
 ]
 
 [[package]]
-name = "aoc-2020-12-03"
+name = "aoc-2020-03"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-04"
+name = "aoc-2020-04"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
@@ -33,18 +33,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-05"
+name = "aoc-2020-05"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-06"
+name = "aoc-2020-06"
 version = "0.1.0"
 dependencies = [
  "itertools",
 ]
 
 [[package]]
-name = "aoc-2020-12-07"
+name = "aoc-2020-07"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
@@ -52,31 +52,31 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-08"
+name = "aoc-2020-08"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-09"
+name = "aoc-2020-09"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-10"
+name = "aoc-2020-10"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-11"
+name = "aoc-2020-11"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-12"
+name = "aoc-2020-12"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-13"
+name = "aoc-2020-13"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-14"
+name = "aoc-2020-14"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
@@ -84,14 +84,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-15"
+name = "aoc-2020-15"
 version = "0.1.0"
 dependencies = [
  "rustc-hash",
 ]
 
 [[package]]
-name = "aoc-2020-12-16"
+name = "aoc-2020-16"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
@@ -99,23 +99,23 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-17"
+name = "aoc-2020-17"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-18"
+name = "aoc-2020-18"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-19"
+name = "aoc-2020-19"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-20"
+name = "aoc-2020-20"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-21"
+name = "aoc-2020-21"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
@@ -123,19 +123,19 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-2020-12-22"
+name = "aoc-2020-22"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-23"
+name = "aoc-2020-23"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-24"
+name = "aoc-2020-24"
 version = "0.1.0"
 
 [[package]]
-name = "aoc-2020-12-25"
+name = "aoc-2020-25"
 version = "0.1.0"
 
 [[package]]

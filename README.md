@@ -3,12 +3,12 @@ Solutions for [Advent of Code](https://adventofcode.com).
 
 To run a particular solution:
 ```
-$ cargo run --release --bin aoc-<year>-<month>-<day>
+$ cargo run --release --bin aoc-<year>-<day>
 ```
 
 To work on a solution:
 ```
-$ cd aoc-<year>-<month>-<day>
+$ cd <year>/<day>
 # hack hack hack
 $ cargo t
 $ cargo r

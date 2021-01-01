@@ -5,22 +5,29 @@ script="$(readlink -f "$0")"
 script_dir="$(dirname "$script")"
 cd "${script_dir}/.." >/dev/null
 
-if [[ "$1" ]]; then
-    name="$1"
+if [[ "$1" && "$2" ]]; then
+    year="$1"
+    day="$2"
 else
-    name="aoc-$(date +"%Y-%m-%d")"
+    year="$(date +"%Y")"
+    day="$(date +"%d")"
 fi
 
-if ! [[ "$name" =~ ^aoc-[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
-    echo "error: bad pattern"
+if ! [[ "$year" =~ [0-9]{4} ]]; then
+    echo "error: ${year} bad <year> pattern"
     exit 1
 fi
 
+if ! [[ "$day" =~ [0-9]{2} ]]; then
+    echo "error: ${day} bad <day> pattern"
+    exit 1
+fi
+
+dir="${year}/${day}"
+
 tmpfile=$(mktemp)
 if [[ "${AOC_SESSION}" ]]; then
-    year="${name:4:4}"
-    day="${name:12:2}"
-    url="https://adventofcode.com/${year}/day/${day}/input"
+    url="https://adventofcode.com/${year}/day/${day#0}/input"
     curl \
         -X GET \
         -H "Cookie: session=${AOC_SESSION}" \
@@ -31,14 +38,14 @@ fi
 # Point of no return: commence write operations
 
 # - Input and test input
-mkdir -p "${name}/src"
-mv "$tmpfile" "${name}"/src/input.txt
-touch "${name}"/src/test-input.txt
+mkdir -p "${dir}/src"
+mv "$tmpfile" "${dir}"/src/input.txt
+touch "${dir}"/src/test-input.txt
 
 # - <day>/Cargo.toml
-cat >"${name}/Cargo.toml" <<EOF
+cat >"${dir}/Cargo.toml" <<EOF
 [package]
-name = "${name}"
+name = "aoc-${year}-${day}"
 version = "0.1.0"
 authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2018"
@@ -47,7 +54,7 @@ edition = "2018"
 EOF
 
 # - <day>/src/main.rs
-cat >"${name}/src/main.rs" <<EOF
+cat >"${dir}/src/main.rs" <<EOF
 #![allow(dead_code, unused_variables)]
 
 fn main() {

@@ -2,7 +2,6 @@ use lazy_static::lazy_static;
 use regex::{Captures, Regex};
 use std::collections::HashMap;
 use std::collections::HashSet;
-use std::iter::FromIterator;
 
 fn main() {
     let input = include_str!("input.txt");
@@ -130,7 +129,7 @@ fn assign_fields(
 
     let mut x: HashMap<String, HashSet<Column>> = HashMap::new();
     for key in fields.iter().map(|f| f.name.clone()) {
-        x.insert(key, HashSet::from_iter(0..fields.len()));
+        x.insert(key, (0..fields.len()).collect());
     }
 
     for t in tickets.iter() {
@@ -176,6 +175,7 @@ fn part_two(input: &str) -> Result<u64, Error> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::iter::FromIterator;
 
     const INPUT_PART_ONE: &str = include_str!("test-input-part-one.txt");
     const INPUT_PART_TWO: &str = include_str!("test-input-part-two.txt");

@@ -60,29 +60,29 @@ impl<'a> Passport<'a> {
 
 fn byr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| year >= 1920 && year <= 2002)
+        .map_or(false, |year| (1920..=2002).contains(&year))
 }
 
 fn iyr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| year >= 2010 && year <= 2020)
+        .map_or(false, |year| (2010..=2020).contains(&year))
 }
 
 fn eyr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| year >= 2020 && year <= 2030)
+        .map_or(false, |year| (2020..=2030).contains(&year))
 }
 
 fn hgt_valid(s: &str) -> bool {
     if let Some(s) = s.strip_suffix("cm") {
         return s
             .parse::<u32>()
-            .map_or(false, |height| height >= 150 && height <= 193);
+            .map_or(false, |height| (150..=193).contains(&height));
     }
     if let Some(s) = s.strip_suffix("in") {
         return s
             .parse::<u32>()
-            .map_or(false, |height| height >= 59 && height <= 76);
+            .map_or(false, |height| (59..76).contains(&height));
     }
     false
 }

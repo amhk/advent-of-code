@@ -39,7 +39,7 @@ fn parse_input(input: &str) -> Result<HashMap<Allergen, Vec<BTreeSet<Ingredient>
         for caps in RE_ALLERGEN.captures_iter(&allergen_list) {
             let allergen = caps.get(1).unwrap().as_str();
             map.entry(allergen.to_string())
-                .or_insert(Vec::new())
+                .or_insert_with(Vec::new)
                 .push(set.clone());
         }
     }

@@ -55,8 +55,6 @@ EOF
 
 # - <day>/src/main.rs
 cat >"${dir}/src/main.rs" <<EOF
-#![allow(dead_code, unused_variables)]
-
 fn main() {
     let input = include_str!("input.txt");
 
@@ -67,16 +65,17 @@ fn main() {
     println!("part 2: {}", answer);
 }
 
+#[allow(dead_code)]
 #[derive(Debug, PartialEq)]
 enum Error {
     BadInput,
 }
 
-fn part_one(input: &str) -> Result<usize, Error> {
+fn part_one(_input: &str) -> Result<usize, Error> {
     todo!();
 }
 
-fn part_two(input: &str) -> Result<usize, Error> {
+fn part_two(_input: &str) -> Result<usize, Error> {
     todo!();
 }
 

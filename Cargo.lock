@@ -79,6 +79,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2015-12"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+]
+
+[[package]]
 name = "aoc-2020-01"
 version = "0.1.0"
 
@@ -284,6 +291,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "itoa"
+version = "0.4.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd25036021b0de88a0aff6b850051563c6516d0bf53f8638938edbb9de732736"
+
+[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -400,6 +413,29 @@ name = "rustc-serialize"
 version = "0.3.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
+
+[[package]]
+name = "ryu"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "71d301d4193d031abdd79ff7e3dd721168a9572ef3fe51a1517aba235bd8f86e"
+
+[[package]]
+name = "serde"
+version = "1.0.118"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "06c64263859d87aa2eb554587e2d23183398d617427327cf2b3d0ed8c69e4800"
+
+[[package]]
+name = "serde_json"
+version = "1.0.61"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4fceb2595057b6891a4ee808f70054bd2d12f0e97f1cbb78689b59f676df325a"
+dependencies = [
+ "itoa",
+ "ryu",
+ "serde",
+]
 
 [[package]]
 name = "thread_local"

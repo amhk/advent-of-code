@@ -71,6 +71,14 @@ name = "aoc-2015-10"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2015-11"
+version = "0.1.0"
+dependencies = [
+ "ascii",
+ "itertools 0.10.0",
+]
+
+[[package]]
 name = "aoc-2020-01"
 version = "0.1.0"
 
@@ -198,6 +206,12 @@ version = "0.1.0"
 [[package]]
 name = "aoc-2020-25"
 version = "0.1.0"
+
+[[package]]
+name = "ascii"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bbf56136a5198c7b01a49e3afcbef6cf84597273d298f54432926024107b0109"
 
 [[package]]
 name = "bit-set"

@@ -126,6 +126,14 @@ name = "aoc-2015-19"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2015-20"
+version = "0.1.0"
+dependencies = [
+ "num_cpus",
+ "primes",
+]
+
+[[package]]
 name = "aoc-2020-01"
 version = "0.1.0"
 
@@ -363,6 +371,12 @@ dependencies = [
  "hermit-abi",
  "libc",
 ]
+
+[[package]]
+name = "primes"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68a61082d8bceecd71a3870e9162002bb75f7ba9c7aa8b76227e887782fef9c8"
 
 [[package]]
 name = "rand"

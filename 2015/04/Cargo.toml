@@ -5,5 +5,5 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-num_cpus = "*"
-rust-crypto = "*"
+num_cpus = "1.13"
+rust-crypto = "0.2"

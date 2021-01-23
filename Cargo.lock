@@ -145,6 +145,13 @@ name = "aoc-2015-22"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2015-23"
+version = "0.1.0"
+dependencies = [
+ "regex",
+]
+
+[[package]]
 name = "aoc-2020-01"
 version = "0.1.0"
 

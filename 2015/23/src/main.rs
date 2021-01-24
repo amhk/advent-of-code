@@ -171,7 +171,6 @@ impl FromStr for Computer {
     }
 }
 
-#[allow(dead_code)]
 #[derive(Debug, PartialEq)]
 enum Error {
     BadInput,

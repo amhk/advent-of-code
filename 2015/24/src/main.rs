@@ -11,7 +11,6 @@ fn main() {
     println!("part 2: {}", answer);
 }
 
-#[allow(dead_code)]
 #[derive(Debug, PartialEq)]
 enum Error {
     BadInput,

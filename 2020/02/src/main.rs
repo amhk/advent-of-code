@@ -3,10 +3,10 @@ use regex::Regex;
 fn main() -> Result<(), ()> {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input)?;
+    let answer = part_one(input)?;
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input)?;
+    let answer = part_two(input)?;
     println!("part 2: {}", answer);
 
     Ok(())
@@ -88,11 +88,11 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(part_one(&INPUT), Ok(2));
+        assert_eq!(part_one(INPUT), Ok(2));
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(part_two(&INPUT), Ok(1));
+        assert_eq!(part_two(INPUT), Ok(1));
     }
 }

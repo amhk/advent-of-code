@@ -1,10 +1,10 @@
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input, 25).expect("no solution found for part one");
+    let answer = part_one(input, 25).expect("no solution found for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input, 25).expect("no solution found for part one");
+    let answer = part_two(input, 25).expect("no solution found for part one");
     println!("part 2: {}", answer);
 }
 

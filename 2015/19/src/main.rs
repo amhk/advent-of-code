@@ -3,10 +3,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -96,7 +96,7 @@ fn part_one(input: &str) -> Result<usize, Error> {
 
 fn part_two(input: &str) -> Result<usize, Error> {
     let (rules, molecule) = parse_input(input)?;
-    Ok(construct(&rules, &molecule).ok_or(Error::BadInput)?)
+    construct(&rules, &molecule).ok_or(Error::BadInput)
 }
 
 #[cfg(test)]

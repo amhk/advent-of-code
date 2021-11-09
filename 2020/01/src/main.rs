@@ -1,10 +1,10 @@
 fn main() -> Result<(), ()> {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input)?;
+    let answer = part_one(input)?;
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input)?;
+    let answer = part_two(input)?;
     println!("part 2: {}", answer);
 
     Ok(())
@@ -18,7 +18,7 @@ fn str_to_int_vec(input: &str) -> Vec<u32> {
 }
 
 fn part_one(input: &str) -> Result<u32, ()> {
-    let input = str_to_int_vec(&input);
+    let input = str_to_int_vec(input);
     for i in 0..input.len() {
         for j in i..input.len() {
             let a = input[i];
@@ -32,7 +32,7 @@ fn part_one(input: &str) -> Result<u32, ()> {
 }
 
 fn part_two(input: &str) -> Result<u32, ()> {
-    let input = str_to_int_vec(&input);
+    let input = str_to_int_vec(input);
     for i in 0..input.len() {
         for j in i..input.len() {
             for k in j..input.len() {
@@ -56,11 +56,11 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(part_one(&INPUT), Ok(514579));
+        assert_eq!(part_one(INPUT), Ok(514579));
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(part_two(&INPUT), Ok(241861950));
+        assert_eq!(part_two(INPUT), Ok(241861950));
     }
 }

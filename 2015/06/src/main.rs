@@ -4,10 +4,10 @@ use regex::{Captures, Regex};
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -116,7 +116,7 @@ enum Error {
 
 fn part_one(input: &str) -> Result<usize, Error> {
     let mut grid = Grid::new();
-    for instr in parse_input(&input)? {
+    for instr in parse_input(input)? {
         match instr {
             Instruction::TurnOn((a, b), (c, d)) => grid.turn_on((a, b), (c, d)),
             Instruction::TurnOff((a, b), (c, d)) => grid.turn_off((a, b), (c, d)),
@@ -128,7 +128,7 @@ fn part_one(input: &str) -> Result<usize, Error> {
 
 fn part_two(input: &str) -> Result<u32, Error> {
     let mut grid = Grid::new();
-    for instr in parse_input(&input)? {
+    for instr in parse_input(input)? {
         match instr {
             Instruction::TurnOn((a, b), (c, d)) => grid.increase((a, b), (c, d)),
             Instruction::TurnOff((a, b), (c, d)) => grid.decrease((a, b), (c, d)),

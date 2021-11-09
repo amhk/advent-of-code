@@ -5,10 +5,10 @@ use std::str::FromStr;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -91,7 +91,7 @@ impl Tile {
     where
         F: Fn(&Tile) -> String,
     {
-        let s = func(&self).replace('.', "0").replace('#', "1");
+        let s = func(self).replace('.', "0").replace('#', "1");
         let c = s.parse::<u32>().unwrap();
         self.cache[index] = c;
     }
@@ -468,7 +468,7 @@ fn part_two(input: &str) -> Result<u64, Error> {
     ))));
 
     for canvas in &[r0, r90, r180, r270, f0, f90, f180, f270] {
-        let sea_monsters = count_sea_monsters(&canvas);
+        let sea_monsters = count_sea_monsters(canvas);
         if sea_monsters > 0 {
             let hashes = canvas.chars().filter(|&ch| ch == '#').count();
             // each sea monster takes up 15 hashes
@@ -527,7 +527,7 @@ mod tests {
 ####.
 #.#..
 #..#.";
-        let mut t = Tile::from_str(&s).unwrap();
+        let mut t = Tile::from_str(s).unwrap();
 
         t.set_orientation(Orientation::R0);
         assert_eq!(t.northern_edge(), "####.");
@@ -591,6 +591,6 @@ mod tests {
 <.#..#..#..#..#..#...>
 cccc..............dddd
 ";
-        assert_eq!(count_sea_monsters(&s), 1);
+        assert_eq!(count_sea_monsters(s), 1);
     }
 }

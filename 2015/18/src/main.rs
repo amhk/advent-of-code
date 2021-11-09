@@ -5,10 +5,10 @@ use std::str::FromStr;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -62,7 +62,7 @@ impl Grid {
         let mut copy = FxHashMap::default();
         for (k, v) in self.cells.iter() {
             let n = self
-                .neighbours(&(k))
+                .neighbours(k)
                 .filter(|c| self.cells.get(c) == Some(&Cell::Alive))
                 .count();
             copy.insert(
@@ -141,9 +141,9 @@ mod tests {
     #[test]
     fn test_grid_neighbours() {
         let grid = Grid::from_str(INPUT).unwrap();
-        assert_eq!(grid.neighbours(&(0, 0)).collect::<Vec<_>>().len(), 3);
-        assert_eq!(grid.neighbours(&(1, 1)).collect::<Vec<_>>().len(), 8);
-        assert_eq!(grid.neighbours(&(0, 1)).collect::<Vec<_>>().len(), 5);
+        assert_eq!(grid.neighbours(&(0, 0)).count(), 3);
+        assert_eq!(grid.neighbours(&(1, 1)).count(), 8);
+        assert_eq!(grid.neighbours(&(0, 1)).count(), 5);
     }
 
     #[test]

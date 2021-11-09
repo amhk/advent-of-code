@@ -1,10 +1,10 @@
 fn main() {
     let input = include_str!("input.txt").trim();
 
-    let answer = part_one(&input);
+    let answer = part_one(input);
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input);
+    let answer = part_two(input);
     println!("part 2: {}", answer);
 }
 

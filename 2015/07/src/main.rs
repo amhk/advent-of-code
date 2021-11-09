@@ -5,10 +5,10 @@ use std::{cell::RefCell, collections::HashMap};
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -55,10 +55,10 @@ impl Circuit {
         }
         let signal = match &self.nodes[id] {
             Node::Fixed(signal) => *signal,
-            Node::Passthrough(id) => self.value(&id)?,
-            Node::FixedAnd(signal, id) => signal & self.value(&id)?,
-            Node::And(id_lhs, id_rhs) => self.value(&id_lhs)? & self.value(&id_rhs)?,
-            Node::Or(id_lhs, id_rhs) => self.value(&id_lhs)? | self.value(&id_rhs)?,
+            Node::Passthrough(id) => self.value(id)?,
+            Node::FixedAnd(signal, id) => signal & self.value(id)?,
+            Node::And(id_lhs, id_rhs) => self.value(id_lhs)? & self.value(id_rhs)?,
+            Node::Or(id_lhs, id_rhs) => self.value(id_lhs)? | self.value(id_rhs)?,
             Node::Not(id) => !self.value(id)?,
             Node::LeftShift(id, amount) => self.value(id)? << amount,
             Node::RightShift(id, amount) => self.value(id)? >> amount,

@@ -4,10 +4,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input, 100).expect("no solution for part two");
+    let answer = part_two(input, 100).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -161,11 +161,11 @@ fn part_two(input: &str, days: usize) -> Result<usize, Error> {
 
         let mut next_gen: HashMap<TileId, Color> = HashMap::new();
         for id in ids {
-            let colors: Vec<_> = neighbours(&id)
+            let count = neighbours(&id)
                 .iter()
                 .map(|id| tiles.get(id).unwrap_or(&Color::White))
-                .collect();
-            let count = colors.into_iter().filter(|&c| *c == Color::Black).count();
+                .filter(|&c| *c == Color::Black)
+                .count();
             match tiles.get(&id).unwrap_or(&Color::White) {
                 Color::White => {
                     if count == 2 {

@@ -4,10 +4,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -87,7 +87,7 @@ fn will_fit_in_bins(values: &[u32], target_sum: u32, bins_left: usize) -> bool {
         }
 
         let sum = current.iter().sum::<u32>();
-        for (value, values_left) in chomp(&values_left) {
+        for (value, values_left) in chomp(values_left) {
             if sum + value < target_sum {
                 let mut current = current.to_vec();
                 current.push(value);
@@ -140,7 +140,7 @@ fn solve(values: &[u32], bins: u32) -> Result<u64, Error> {
             }
         }
     }
-    Ok(min.ok_or(Error::NoSolution)?)
+    min.ok_or(Error::NoSolution)
 }
 
 fn part_one(input: &str) -> Result<u64, Error> {
@@ -159,13 +159,13 @@ mod tests {
 
     #[test]
     fn test_find_subsets() {
-        let v = find_subsets(&vec![1, 2, 3, 5, 6, 7], 2, 7);
+        let v = find_subsets(&[1, 2, 3, 5, 6, 7], 2, 7);
         assert_eq!(v.len(), 2);
     }
 
     #[test]
     fn test_chomp() {
-        let v = chomp(&vec![1, 2, 3]);
+        let v = chomp(&[1, 2, 3]);
         assert_eq!(v.len(), 3);
         assert!(v.contains(&(1, vec![3, 2])));
         assert!(v.contains(&(2, vec![3, 1])));

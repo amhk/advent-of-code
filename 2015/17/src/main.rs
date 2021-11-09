@@ -1,10 +1,10 @@
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -49,7 +49,7 @@ fn find_combinations(numbers: &[u32], target_sum: u32) -> Vec<Vec<u32>> {
 
     debug_assert!(!numbers.iter().any(|&n| n == 0));
     let mut out = Vec::new();
-    gen(&[], &numbers, target_sum, &mut out);
+    gen(&[], numbers, target_sum, &mut out);
     out
 }
 

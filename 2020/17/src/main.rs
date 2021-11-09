@@ -5,10 +5,10 @@ use std::str::FromStr;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -193,8 +193,8 @@ mod tests {
     #[test]
     fn test_neighbours() {
         let p = Point3d { x: 0, y: 0, z: 0 };
-        assert_eq!(p.self_and_neighbours().iter().count(), 3_usize.pow(3));
-        assert_eq!(p.neighbours().iter().count(), 3_usize.pow(3) - 1);
+        assert_eq!(p.self_and_neighbours().len(), 3_usize.pow(3));
+        assert_eq!(p.neighbours().len(), 3_usize.pow(3) - 1);
 
         let p = Point4d {
             x: 0,
@@ -202,8 +202,8 @@ mod tests {
             z: 0,
             w: 0,
         };
-        assert_eq!(p.self_and_neighbours().iter().count(), 3_usize.pow(4));
-        assert_eq!(p.neighbours().iter().count(), 3_usize.pow(4) - 1);
+        assert_eq!(p.self_and_neighbours().len(), 3_usize.pow(4));
+        assert_eq!(p.neighbours().len(), 3_usize.pow(4) - 1);
     }
 
     #[test]

@@ -1,10 +1,10 @@
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = count(&input, false).expect("no solution for part one");
+    let answer = count(input, false).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = count(&input, true).expect("no solution for part two");
+    let answer = count(input, true).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -46,7 +46,7 @@ impl Node {
                 if input.is_empty() {
                     break;
                 }
-                match node.matches0(&nodes, &input) {
+                match node.matches0(nodes, &input) {
                     Some(remainder) => {
                         input = remainder.to_vec();
                         count42 += 1;
@@ -67,7 +67,7 @@ impl Node {
                 if input.is_empty() {
                     break;
                 }
-                match node.matches0(&nodes, &input) {
+                match node.matches0(nodes, &input) {
                     Some(remainder) => {
                         input = remainder.to_vec();
                         count31 += 1;
@@ -84,7 +84,7 @@ impl Node {
             // (3)
             input.is_empty() && count31 < count42
         } else {
-            self.matches0(&nodes, &input) == Some(&[])
+            self.matches0(nodes, &input) == Some(&[])
         }
     }
 
@@ -107,7 +107,7 @@ impl Node {
                             break;
                         }
                         let node = &nodes[*index];
-                        match node.matches0(&nodes, i) {
+                        match node.matches0(nodes, i) {
                             None => {
                                 fail = true;
                                 break;

@@ -6,10 +6,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -32,7 +32,7 @@ fn and_mask(value: u64, mask: &str) -> Result<u64, Error> {
             _ => v,
         })
         .collect();
-    Ok(u64::from_str_radix(&value, 2).map_err(|_| Error::Internal)?)
+    u64::from_str_radix(&value, 2).map_err(|_| Error::Internal)
 }
 
 lazy_static! {

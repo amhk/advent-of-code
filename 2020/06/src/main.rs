@@ -4,10 +4,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input);
+    let answer = part_one(input);
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input);
+    let answer = part_two(input);
     println!("part 2: {}", answer);
 }
 
@@ -20,21 +20,17 @@ fn process_group_union(input: &str) -> usize {
 }
 
 fn process_group_intersection(input: &str) -> usize {
-    let answers: Vec<HashSet<char>> = input
-        .lines()
-        .map(|line| {
-            line.chars().fold(HashSet::new(), |mut set, ch| {
-                set.insert(ch);
-                set
-            })
+    let mut iter = input.lines().map(|line| {
+        line.chars().fold(HashSet::new(), |mut set, ch| {
+            set.insert(ch);
+            set
         })
-        .collect();
-    let mut iter = answers.into_iter();
+    });
     let mut intersection = iter.next().unwrap();
     for set in iter {
         intersection = intersection.intersection(&set).copied().collect();
     }
-    intersection.iter().count()
+    intersection.len()
 }
 
 fn part_one(input: &str) -> usize {

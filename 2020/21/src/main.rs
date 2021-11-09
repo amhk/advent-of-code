@@ -5,10 +5,10 @@ use std::collections::{BTreeSet, HashMap};
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -36,7 +36,7 @@ fn parse_input(input: &str) -> Result<HashMap<Allergen, Vec<BTreeSet<Ingredient>
             set.insert(ingredient.to_string());
         }
         let allergen_list = caps.get(2).unwrap().as_str();
-        for caps in RE_ALLERGEN.captures_iter(&allergen_list) {
+        for caps in RE_ALLERGEN.captures_iter(allergen_list) {
             let allergen = caps.get(1).unwrap().as_str();
             map.entry(allergen.to_string())
                 .or_insert_with(Vec::new)

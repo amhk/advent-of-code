@@ -6,10 +6,10 @@ use std::collections::HashSet;
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 
@@ -51,7 +51,7 @@ fn parse_input(input: &str) -> Result<(Vec<Field>, Ticket, Vec<Ticket>), Error> 
             .map_err(|_| Error::BadInput)
     }
 
-    let sections = RE_SECTIONS.captures(&input).ok_or(Error::BadInput)?;
+    let sections = RE_SECTIONS.captures(input).ok_or(Error::BadInput)?;
 
     let mut fields = Vec::new();
     for caps in RE_FIELDS.captures_iter(sections.get(1).unwrap().as_str()) {
@@ -119,7 +119,7 @@ fn assign_fields(
         .iter()
         .filter(|t| {
             for v in t.values.iter() {
-                if fields.iter().find(|f| f.ok(*v)).is_none() {
+                if !fields.iter().any(|f| f.ok(*v)) {
                     return false;
                 }
             }

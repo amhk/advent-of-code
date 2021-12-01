@@ -48,7 +48,7 @@ cat >"${dir}/Cargo.toml" <<EOF
 name = "aoc-${year}-${day}"
 version = "0.1.0"
 authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 EOF
@@ -58,10 +58,10 @@ cat >"${dir}/src/main.rs" <<EOF
 fn main() {
     let input = include_str!("input.txt");
 
-    let answer = part_one(&input).expect("no solution for part one");
+    let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
 
-    let answer = part_two(&input).expect("no solution for part two");
+    let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
 }
 

@@ -106,7 +106,7 @@ fn pid_valid(s: &str) -> bool {
 }
 
 fn parse_input(input: &str) -> Vec<Passport> {
-    input.split("\n\n").map(|s| Passport::from_str(s)).collect()
+    input.split("\n\n").map(Passport::from_str).collect()
 }
 
 fn part_one(input: &str) -> usize {

@@ -16,6 +16,7 @@ enum Error {
     BadInput,
 }
 
+#[allow(dead_code)]
 #[derive(Debug)]
 struct Ingredient {
     name: String,

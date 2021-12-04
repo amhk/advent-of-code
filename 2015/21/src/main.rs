@@ -316,7 +316,7 @@ mod tests {
         ];
         let rings = vec![];
         let lists = generate_shopping_lists(&weapons, &armor, &rings);
-        assert_eq!(lists.len(), 1 * 3);
+        assert_eq!(lists.len(), 3);
 
         let rings = vec![
             Item {
@@ -336,6 +336,6 @@ mod tests {
             },
         ];
         let lists = generate_shopping_lists(&weapons, &armor, &rings);
-        assert_eq!(lists.len(), 1 * 3 * 7);
+        assert_eq!(lists.len(), 3 * 7);
     }
 }

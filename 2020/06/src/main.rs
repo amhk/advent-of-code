@@ -34,14 +34,11 @@ fn process_group_intersection(input: &str) -> usize {
 }
 
 fn part_one(input: &str) -> usize {
-    input.split("\n\n").map(|g| process_group_union(g)).sum()
+    input.split("\n\n").map(process_group_union).sum()
 }
 
 fn part_two(input: &str) -> usize {
-    input
-        .split("\n\n")
-        .map(|g| process_group_intersection(g))
-        .sum()
+    input.split("\n\n").map(process_group_intersection).sum()
 }
 
 #[cfg(test)]

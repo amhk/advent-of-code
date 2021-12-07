@@ -318,6 +318,10 @@ name = "aoc-2021-06"
 version = "0.1.0"
 
 [[package]]
+name = "aoc-2021-07"
+version = "0.1.0"
+
+[[package]]
 name = "ascii"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

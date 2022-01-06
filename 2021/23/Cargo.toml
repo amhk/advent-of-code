@@ -1,0 +1,9 @@
+[package]
+name = "aoc-2021-23"
+version = "0.1.0"
+authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+lazy_static = "1.4"
+rustc-hash = "1.1"

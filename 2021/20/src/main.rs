@@ -217,7 +217,7 @@ mod tests {
     #[test]
     fn test_grid() {
         let (translation, grid) = parse_input(INPUT).unwrap();
-        assert_eq!(grid.iter().collect::<Vec<_>>().len(), 7 * 7);
+        assert_eq!(grid.iter().count(), 7 * 7);
         assert_eq!(grid.get((0, 0), false), Bit::One);
         assert_eq!(grid.get((1, 1), false), Bit::Zero);
         assert_eq!(grid.get((1000, 1000), false), Bit::Zero);

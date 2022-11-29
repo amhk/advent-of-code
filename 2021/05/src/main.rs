@@ -96,7 +96,7 @@ fn parse_input(input: &str, include_diagonals: bool) -> Result<HashMap<i32, Vec<
 
     let mut map = HashMap::new();
     for line in input.lines() {
-        let line = line.replace("->", "").replace(",", " ");
+        let line = line.replace("->", "").replace(',', " ");
         let splits = line.split_whitespace().collect::<Vec<_>>();
         if splits.len() != 4 {
             return Err(Error::BadInput);

@@ -28,8 +28,7 @@ fn parse_input(input: &str) -> Result<HashMap<&str, HashMap<&str, i32>>, Error> 
             .map_err(|_| Error::BadInput)?;
         let neighbour = words
             .nth(6)
-            .map(|s| s.strip_suffix('.'))
-            .flatten()
+            .and_then(|s| s.strip_suffix('.'))
             .ok_or(Error::BadInput)?;
         guests
             .entry(who)

@@ -24,10 +24,10 @@ struct Rule {
 fn parse_input(input: &str) -> Result<(Vec<Rule>, String), Error> {
     let mut rules = Vec::new();
     let parts: Vec<_> = input.split("\n\n").collect();
-    for line in parts.get(0).ok_or(Error::BadInput)?.lines() {
+    for line in parts.first().ok_or(Error::BadInput)?.lines() {
         let tmp: Vec<_> = line.split_whitespace().collect();
         rules.push(Rule {
-            from: tmp.get(0).ok_or(Error::BadInput)?.to_string(),
+            from: tmp.first().ok_or(Error::BadInput)?.to_string(),
             to: tmp.get(2).ok_or(Error::BadInput)?.to_string(),
         });
     }

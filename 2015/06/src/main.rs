@@ -72,7 +72,7 @@ impl Grid {
     }
 
     fn toggle(&mut self, begin: (usize, usize), end: (usize, usize)) {
-        self.operate(begin, end, |l| if l == 0 { 1 } else { 0 });
+        self.operate(begin, end, |l| (l == 0) as u32);
     }
 
     fn turn_on(&mut self, begin: (usize, usize), end: (usize, usize)) {

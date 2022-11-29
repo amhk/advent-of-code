@@ -24,10 +24,10 @@ enum Token {
 }
 
 fn tokenize(input: &str) -> Result<Vec<Token>, Error> {
-    let input = input.replace("+", " + ");
-    let input = input.replace("*", " * ");
-    let input = input.replace("(", " ( ");
-    let input = input.replace(")", " ) ");
+    let input = input.replace('+', " + ");
+    let input = input.replace('*', " * ");
+    let input = input.replace('(', " ( ");
+    let input = input.replace(')', " ) ");
     let mut tokens = Vec::new();
     for word in input.split_whitespace() {
         tokens.push(match word {

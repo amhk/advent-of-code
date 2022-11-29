@@ -65,7 +65,7 @@ fn part_two(input: &str) -> Result<usize, Error> {
 
     let mut sizes = combinations.iter().map(|v| v.len()).collect::<Vec<_>>();
     sizes.sort_unstable();
-    let first = *sizes.get(0).ok_or(Error::BadInput)?;
+    let first = *sizes.first().ok_or(Error::BadInput)?;
     Ok(sizes.iter().take_while(|&&i| i == first).count())
 }
 

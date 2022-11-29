@@ -50,7 +50,7 @@ fn parse_input(input: &str) -> Result<[usize; 2], Error> {
             if line.len() < 28 {
                 return Err(Error::BadInput);
             }
-            (&line[28..]).parse::<usize>().map_err(|_| Error::BadInput)
+            line[28..].parse::<usize>().map_err(|_| Error::BadInput)
         } else {
             Err(Error::BadInput)
         }

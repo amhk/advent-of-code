@@ -62,7 +62,7 @@ fn part_one(input: &str) -> usize {
 
 fn part_two(input: &str) -> usize {
     let bags = parse_input(input);
-    recurse(&bags, &"shiny gold".to_string()) - 1
+    recurse(&bags, "shiny gold") - 1
 }
 
 fn recurse(bags: &HashMap<ID, Bag>, id: &str) -> usize {

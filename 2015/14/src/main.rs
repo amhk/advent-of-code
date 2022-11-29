@@ -54,7 +54,7 @@ fn parse_input(input: &str) -> Result<Vec<Reindeer>, Error> {
     for line in input.lines() {
         let words: Vec<_> = line.split_whitespace().collect();
         reindeer.push(Reindeer {
-            name: words.get(0).ok_or(Error::BadInput)?.to_string(),
+            name: words.first().ok_or(Error::BadInput)?.to_string(),
             speed: words
                 .get(3)
                 .ok_or(Error::BadInput)?

@@ -51,31 +51,30 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.66"
 EOF
 
 # - <day>/src/main.rs
 cat >"${dir}/src/main.rs" <<EOF
-fn main() {
+use anyhow::{Context, Result};
+
+fn main() -> Result<()> {
     let input = include_str!("input.txt");
 
-    let answer = part_one(input).expect("no solution for part one");
-    println!("part 1: {}", answer);
+    let answer = part_one(input).context("no solution for part one")?;
+    println!("Part 1: {}", answer);
 
-    let answer = part_two(input).expect("no solution for part two");
-    println!("part 2: {}", answer);
+    let answer = part_two(input).context("no solution for part two")?;
+    println!("Part 2: {}", answer);
+
+    Ok(())
 }
 
-#[allow(dead_code)]
-#[derive(Debug, PartialEq)]
-enum Error {
-    BadInput,
-}
-
-fn part_one(_input: &str) -> Result<usize, Error> {
+fn part_one(_input: &str) -> Result<usize> {
     todo!();
 }
 
-fn part_two(_input: &str) -> Result<usize, Error> {
+fn part_two(_input: &str) -> Result<usize> {
     todo!();
 }
 
@@ -87,12 +86,12 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(part_one(INPUT), Ok(0));
+        assert_eq!(part_one(INPUT).unwrap(), 0);
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(part_two(INPUT), Ok(0));
+        assert_eq!(part_two(INPUT).unwrap(), 0);
     }
 }
 EOF

@@ -1,0 +1,9 @@
+[package]
+name = "aoc-2022-01"
+version = "0.1.0"
+authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.66"
+itertools = "0.10.5"

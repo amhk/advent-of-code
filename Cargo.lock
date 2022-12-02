@@ -420,6 +420,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2022-02"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+]
+
+[[package]]
 name = "ascii"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

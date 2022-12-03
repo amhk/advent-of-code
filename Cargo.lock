@@ -427,6 +427,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2022-03"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "itertools 0.10.5",
+]
+
+[[package]]
 name = "ascii"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

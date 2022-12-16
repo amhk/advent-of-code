@@ -504,6 +504,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2022-12"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aoc",
+]
+
+[[package]]
 name = "aoc-2022-13"
 version = "0.1.0"
 dependencies = [

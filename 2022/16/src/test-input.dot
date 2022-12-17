@@ -1,0 +1,41 @@
+graph G {
+    // Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
+    AA [label="AA 0"];
+    AA -- BB;
+    AA -- DD;
+    AA -- II;
+
+    // Valve BB has flow rate=13; tunnels lead to valves CC, AA
+    BB [label="BB 13"];
+    BB -- CC;
+
+    // Valve CC has flow rate=2; tunnels lead to valves DD, BB
+    CC [label="CC 2"];
+    CC -- DD;
+
+    // Valve DD has flow rate=20; tunnels lead to valves CC, AA, EE
+    DD [label="DD 20"];
+    DD -- EE;
+
+    // Valve EE has flow rate=3; tunnels lead to valves FF, DD
+    EE [label="EE 3"];
+    EE -- FF;
+
+    // Valve FF has flow rate=0; tunnels lead to valves EE, GG
+    FF [label="FF 0"];
+    FF -- GG;
+
+    // Valve GG has flow rate=0; tunnels lead to valves FF, HH
+    GG [label="GG 0"];
+    GG -- HH;
+
+    // Valve HH has flow rate=22; tunnel leads to valve GG
+    HH [label="HH 22"];
+
+    // Valve II has flow rate=0; tunnels lead to valves AA, JJ
+    II [label="II 0"];
+    II -- JJ;
+
+    // Valve JJ has flow rate=21; tunnel leads to valve II
+    JJ [label="JJ 21"];
+}

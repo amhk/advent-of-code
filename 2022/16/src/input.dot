@@ -1,0 +1,217 @@
+graph {
+    // Valve AP has flow rate=0; tunnels lead to valves AA, ON
+    AP [label="AP 0"];
+    AP -- ON;
+
+    // Valve QN has flow rate=21; tunnels lead to valves RI, CG
+    QN [label="QN 21"];
+    QN -- RI;
+
+    // Valve LK has flow rate=0; tunnels lead to valves XM, AA
+    LK [label="LK 0"];
+    LK -- XM;
+
+    // Valve HA has flow rate=0; tunnels lead to valves WH, KF
+    HA [label="HA 0"];
+    HA -- KF;
+    HA -- WH;
+
+    // Valve DS has flow rate=16; tunnel leads to valve II
+    DS [label="DS 16"];
+    DS -- II;
+
+    // Valve KD has flow rate=0; tunnels lead to valves KG, QB
+    KD [label="KD 0"];
+    KD -- KG;
+    KD -- QB;
+
+    // Valve JW has flow rate=0; tunnels lead to valves AD, KF
+    JW [label="JW 0"];
+    JW -- KF;
+
+    // Valve HU has flow rate=0; tunnels lead to valves UK, CO
+    HU [label="HU 0"];
+    HU -- UK;
+
+    // Valve AE has flow rate=10; tunnels lead to valves IR, PT, UV
+    AE [label="AE 10"];
+    AE -- IR;
+    AE -- PT;
+    AE -- UV;
+
+    // Valve XA has flow rate=0; tunnels lead to valves CG, EU
+    XA [label="XA 0"];
+
+    // Valve SE has flow rate=17; tunnels lead to valves YR, AD
+    SE [label="SE 17"];
+    SE -- YR;
+
+    // Valve TR has flow rate=0; tunnels lead to valves AL, CS
+    TR [label="TR 0"];
+
+    // Valve BS has flow rate=0; tunnels lead to valves YH, XM
+    BS [label="BS 0"];
+    BS -- XM;
+    BS -- YH;
+
+    // Valve IJ has flow rate=24; tunnels lead to valves XN, WE
+    IJ [label="IJ 24"];
+    IJ -- WE;
+    IJ -- XN;
+
+    // Valve AA has flow rate=0; tunnels lead to valves LK, AP, IZ, PC, QD
+    AA [label="AA 0"];
+    AA -- AP;
+    AA -- IZ;
+    AA -- LK;
+    AA -- PC;
+    AA -- QD;
+
+    // Valve KG has flow rate=0; tunnels lead to valves KD, CS
+    KG [label="KG 0"];
+
+    // Valve QV has flow rate=0; tunnels lead to valves XM, II
+    QV [label="QV 0"];
+    QV -- XM;
+
+    // Valve PC has flow rate=0; tunnels lead to valves AA, YF
+    PC [label="PC 0"];
+    PC -- YF;
+
+    // Valve GJ has flow rate=20; tunnel leads to valve RI
+    GJ [label="GJ 20"];
+    GJ -- RI;
+
+    // Valve UV has flow rate=0; tunnels lead to valves UK, AE
+    UV [label="UV 0"];
+
+    // Valve IR has flow rate=0; tunnels lead to valves EU, AE
+    IR [label="IR 0"];
+
+    // Valve EU has flow rate=13; tunnels lead to valves IR, DT, XA, ON
+    EU [label="EU 13"];
+    EU -- IR;
+    EU -- ON;
+    EU -- XA;
+
+    // Valve ED has flow rate=0; tunnels lead to valves XN, CO
+    ED [label="ED 0"];
+    ED -- XN;
+
+    // Valve DT has flow rate=0; tunnels lead to valves EU, UK
+    DT [label="DT 0"];
+    DT -- EU;
+    DT -- UK;
+
+    // Valve YE has flow rate=0; tunnels lead to valves XM, WS
+    YE [label="YE 0"];
+
+    // Valve AD has flow rate=0; tunnels lead to valves JW, SE
+    AD [label="AD 0"];
+    AD -- JW;
+    AD -- SE;
+
+    // Valve WE has flow rate=0; tunnels lead to valves IJ, NA
+    WE [label="WE 0"];
+
+    // Valve UK has flow rate=5; tunnels lead to valves UV, DT, QD, HU
+    UK [label="UK 5"];
+    UK -- UV;
+
+    // Valve YR has flow rate=0; tunnels lead to valves OS, SE
+    YR [label="YR 0"];
+
+    // Valve II has flow rate=0; tunnels lead to valves QV, DS
+    II [label="II 0"];
+    II -- QV;
+
+    // Valve GT has flow rate=0; tunnels lead to valves CS, MN
+    GT [label="GT 0"];
+    GT -- MN;
+
+    // Valve YH has flow rate=0; tunnels lead to valves BS, QB
+    YH [label="YH 0"];
+
+    // Valve BQ has flow rate=0; tunnels lead to valves XM, KF
+    BQ [label="BQ 0"];
+    BQ -- KF;
+    BQ -- XM;
+
+    // Valve OS has flow rate=0; tunnels lead to valves YR, NA
+    OS [label="OS 0"];
+    OS -- YR;
+
+    // Valve WH has flow rate=0; tunnels lead to valves QB, HA
+    WH [label="WH 0"];
+
+    // Valve QB has flow rate=4; tunnels lead to valves WH, KD, YH, IZ
+    QB [label="QB 4"];
+    QB -- WH;
+    QB -- YH;
+
+    // Valve ON has flow rate=0; tunnels lead to valves AP, EU
+    ON [label="ON 0"];
+
+    // Valve IZ has flow rate=0; tunnels lead to valves AA, QB
+    IZ [label="IZ 0"];
+    IZ -- QB;
+
+    // Valve MN has flow rate=25; tunnel leads to valve GT
+    MN [label="MN 25"];
+
+    // Valve CG has flow rate=0; tunnels lead to valves XA, QN
+    CG [label="CG 0"];
+    CG -- QN;
+    CG -- XA;
+
+    // Valve QD has flow rate=0; tunnels lead to valves UK, AA
+    QD [label="QD 0"];
+    QD -- UK;
+
+    // Valve AL has flow rate=0; tunnels lead to valves KF, TR
+    AL [label="AL 0"];
+    AL -- KF;
+    AL -- TR;
+
+    // Valve XN has flow rate=0; tunnels lead to valves ED, IJ
+    XN [label="XN 0"];
+
+    // Valve WS has flow rate=0; tunnels lead to valves YE, CS
+    WS [label="WS 0"];
+    WS -- YE;
+
+    // Valve CO has flow rate=18; tunnels lead to valves ED, PT, HU
+    CO [label="CO 18"];
+    CO -- ED;
+    CO -- HU;
+    CO -- PT;
+
+    // Valve PT has flow rate=0; tunnels lead to valves CO, AE
+    PT [label="PT 0"];
+
+    // Valve RI has flow rate=0; tunnels lead to valves QN, GJ
+    RI [label="RI 0"];
+
+    // Valve CS has flow rate=9; tunnels lead to valves YF, GT, WS, TR, KG
+    CS [label="CS 9"];
+    CS -- GT;
+    CS -- KG;
+    CS -- TR;
+    CS -- WS;
+    CS -- YF;
+
+    // Valve YF has flow rate=0; tunnels lead to valves PC, CS
+    YF [label="YF 0"];
+
+    // Valve NA has flow rate=23; tunnels lead to valves OS, WE
+    NA [label="NA 23"];
+    NA -- OS;
+    NA -- WE;
+
+    // Valve KF has flow rate=12; tunnels lead to valves HA, AL, JW, BQ
+    KF [label="KF 12"];
+
+    // Valve XM has flow rate=3; tunnels lead to valves LK, QV, YE, BS, BQ
+    XM [label="XM 3"];
+    XM -- YE;
+}

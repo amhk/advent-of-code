@@ -36,6 +36,12 @@ where
         self.nodes.get_mut(id)
     }
 
+    pub fn iter(&self) -> Iter<'_, NodeId> {
+        Iter {
+            iter: self.nodes.iter(),
+        }
+    }
+
     pub fn dijkstra(&self, start_node: &NodeId, end_node: &NodeId) -> Option<Vec<(NodeId, u32)>> {
         if !self.nodes.contains_key(start_node) || !self.nodes.contains_key(end_node) {
             return None;
@@ -88,8 +94,20 @@ where
 impl<NodeId> Default for Graph<NodeId> {
     fn default() -> Self {
         Graph {
-            nodes: FxHashMap::default()
+            nodes: FxHashMap::default(),
         }
+    }
+}
+
+pub struct Iter<'a, NodeId> {
+    iter: std::collections::hash_map::Iter<'a, NodeId, Node<NodeId>>,
+}
+
+impl<'a, NodeId> Iterator for Iter<'a, NodeId> {
+    type Item = (&'a NodeId, &'a Node<NodeId>);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.iter.next()
     }
 }
 
@@ -98,7 +116,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_graph() {
+    fn test_iter() {
+        let mut graph = Graph::default();
+        graph.add_node((0, 0));
+        graph.add_node((1, 0));
+        graph.add_node((1, 1));
+        graph.add_node((0, 1));
+        let mut v: Vec<_> = graph.iter().map(|(k, _)| k).cloned().collect();
+        v.sort();
+        assert_eq!(v, vec![(0, 0), (0, 1), (1, 0), (1, 1)]);
+    }
+
+    #[test]
+    fn test_dijkstra() {
         //   start        c
         //       | \4  3/   \2
         //       |  \  /     \

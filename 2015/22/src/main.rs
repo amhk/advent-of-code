@@ -114,7 +114,7 @@ fn apply_action(attacker: &mut Character, defender: &mut Character, action: &Act
     }
 }
 
-fn apply_effects(mut player: &mut Character, boss: &mut Character) {
+fn apply_effects(player: &mut Character, boss: &mut Character) {
     player.armor = 0; // in case Shield just expired
     let mut spells = player.active_spells.clone();
     for (action, duration) in spells.iter_mut() {

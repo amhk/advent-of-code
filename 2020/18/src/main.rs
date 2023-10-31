@@ -97,8 +97,8 @@ fn infix_to_postfix(tokens: &[Token], precedence: Precedence) -> Result<Vec<Toke
         }
     }
 
-    while !stack.is_empty() {
-        queue.push(stack.pop().unwrap());
+    while let Some(element) = stack.pop() {
+        queue.push(element);
     }
 
     Ok(queue)

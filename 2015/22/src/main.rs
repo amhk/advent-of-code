@@ -137,7 +137,7 @@ fn fight(
     debug_assert!(!player.is_dead());
     debug_assert!(!boss.is_dead());
 
-    let costs = vec![
+    let costs = [
         fight_action(
             player.clone(),
             boss.clone(),

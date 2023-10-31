@@ -48,7 +48,7 @@ fn part_two(input: &str) -> Result<String> {
         if i % 40 == 0 && i != 0 {
             output.push('\n');
         }
-        if (i as i32 % 40).abs_diff(*value as i32) <= 1 {
+        if (i as i32 % 40).abs_diff(*value) <= 1 {
             output.push('#');
         } else {
             output.push('.');

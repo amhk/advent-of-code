@@ -48,8 +48,7 @@ fn parse_input(input: &str) -> HashMap<ID, Bag> {
 fn part_one(input: &str) -> usize {
     let mut bags = parse_input(input);
     let mut worklist = vec!["shiny gold".to_string()];
-    while !worklist.is_empty() {
-        let child_id = worklist.pop().unwrap();
+    while let Some(child_id) = worklist.pop() {
         for (id, bag) in bags.iter_mut() {
             if bag.children.contains_key(&child_id) {
                 bag.flag = true;

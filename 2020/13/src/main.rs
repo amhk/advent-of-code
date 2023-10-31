@@ -55,7 +55,7 @@ fn part_two(input: &str) -> Result<u64, Error> {
         match id {
             "x" => {}
             _ => {
-                let period = id.parse::<u64>().map_err(|_| Error::BadInput("bad id"))? as u64;
+                let period = id.parse::<u64>().map_err(|_| Error::BadInput("bad id"))?;
                 gears.push((period, offset as u64));
             }
         }

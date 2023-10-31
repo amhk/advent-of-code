@@ -169,9 +169,8 @@ fn parse_input(input: &str) -> Result<Vec<Step>, Error> {
             .map_err(|_| Error::BadInput)
     }
 
-    let re =
-        Regex::new(r#"(on|off) x=(-?\d+)\.\.(-?\d+),y=(-?\d+)\.\.(-?\d+),z=(-?\d+)\.\.(-?\d+)"#)
-            .unwrap();
+    let re = Regex::new(r"(on|off) x=(-?\d+)\.\.(-?\d+),y=(-?\d+)\.\.(-?\d+),z=(-?\d+)\.\.(-?\d+)")
+        .unwrap();
     let mut steps = vec![];
     for line in input.lines() {
         let caps = re.captures(line).ok_or(Error::BadInput)?;

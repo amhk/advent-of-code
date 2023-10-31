@@ -54,7 +54,7 @@ fn try_skip_to_node(node: Option<&Node>, from_jolt: u64) -> Option<&Node> {
     node.and_then(|node| {
         assert!(from_jolt < node.jolt);
         match node.jolt - from_jolt {
-            1 | 2 | 3 => Some(node),
+            1..=3 => Some(node),
             _ => None,
         }
     })

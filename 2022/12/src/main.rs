@@ -22,7 +22,7 @@ type XY = (i32, i32);
 
 fn parse(input: &str) -> Result<(Graph<XY>, XY, XY, Vec<XY>)> {
     fn char_to_usize(ch: char) -> Result<usize> {
-        ensure!(('a'..='z').contains(&ch), "unexpected char {}", ch);
+        ensure!(ch.is_ascii_lowercase(), "unexpected char {}", ch);
         Ok(ch as usize - 'a' as usize)
     }
 

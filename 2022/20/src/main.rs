@@ -192,7 +192,7 @@ mod tests {
 
     #[test]
     fn test_circular_array() {
-        let mut array = CircularArray::from_iter([0, 1, 2, 3].into_iter());
+        let mut array = CircularArray::from_iter([0, 1, 2, 3]);
         assert_eq!(
             array.iter().map(|item| item.value).collect::<Vec<_>>(),
             [0, 1, 2, 3]
@@ -216,7 +216,7 @@ mod tests {
 
     #[test]
     fn test_shift_test_input() {
-        let mut array = CircularArray::from_iter([1, 2, -3, 3, -2, 0, 4].into_iter());
+        let mut array = CircularArray::from_iter([1, 2, -3, 3, -2, 0, 4]);
         assert_eq!(array.values_starting_from_zero(), [0, 4, 1, 2, -3, 3, -2]);
 
         array.shift(0, 1);

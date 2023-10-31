@@ -261,8 +261,7 @@ fn parse_input(input: &str) -> Result<Vec<Box<Node>>, Error> {
 fn part_one(input: &str) -> Result<u32, Error> {
     let mut nodes: Vec<_> = parse_input(input)?.into_iter().rev().collect();
     let mut node = nodes.pop().ok_or(Error::BadInput)?;
-    while !nodes.is_empty() {
-        let other = nodes.pop().unwrap();
+    while let Some(other) = nodes.pop() {
         node = node.add(other);
         node.reduce();
     }
@@ -364,8 +363,7 @@ mod tests {
     fn test_sum() {
         let mut nodes: Vec<_> = parse_input(INPUT).unwrap().into_iter().rev().collect();
         let mut node = nodes.pop().unwrap();
-        while !nodes.is_empty() {
-            let other = nodes.pop().unwrap();
+        while let Some(other) = nodes.pop() {
             node = node.add(other);
             node.reduce();
         }

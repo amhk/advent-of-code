@@ -36,7 +36,7 @@ fn parse_input(input: &str) -> Result<(Vec<Rule>, String), Error> {
 }
 
 fn expand(rules: &[Rule], molecule: &str) -> HashSet<String> {
-    fn partition<'a, 'b>(s: &'a str, substr: &'b str) -> Vec<(&'a str, &'a str, &'a str)> {
+    fn partition<'a>(s: &'a str, substr: &str) -> Vec<(&'a str, &'a str, &'a str)> {
         debug_assert!(!substr.is_empty());
         let mut out = Vec::new();
         let mut ss = s;

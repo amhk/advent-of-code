@@ -2,7 +2,7 @@
 name = "aoc-2015-05"
 version = "0.1.0"
 authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 fancy-regex = "0.4"

@@ -5,5 +5,5 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2021"
 
 [dependencies]
+md5 = "0.7.0"
 num_cpus = "1.16"
-rust-crypto = "0.2"

@@ -1,4 +1,3 @@
-use crypto::{digest::Digest, md5::Md5};
 use std::{
     sync::{Arc, Mutex},
     thread,
@@ -9,9 +8,11 @@ fn main() {
 
     let answer = part_one(input).expect("no solution for part one");
     println!("part 1: {}", answer);
+    assert_eq!(answer, 282_749);
 
     let answer = part_two(input).expect("no solution for part two");
     println!("part 2: {}", answer);
+    assert_eq!(answer, 9_962_624);
 }
 
 struct Context {
@@ -22,11 +23,8 @@ struct Context {
 
 fn worker_thread<F>(secret_key: &str, verify_func: F, ctx: Arc<Mutex<Context>>)
 where
-    F: Fn(&[u8]) -> bool,
+    F: Fn(&md5::Digest) -> bool,
 {
-    let secret_key = secret_key.as_bytes();
-    let mut md5 = Md5::new();
-
     loop {
         let range = {
             let mut ctx = ctx.lock().unwrap();
@@ -39,23 +37,22 @@ where
         };
 
         for i in range {
-            md5.input(secret_key);
-            md5.input(i.to_string().as_bytes());
-            let mut hash = [0; 16];
-            md5.result(&mut hash);
+            let mut input: Vec<u8> = vec![];
+            input.extend_from_slice(secret_key.as_bytes());
+            input.extend_from_slice(i.to_string().as_bytes());
+            let hash = md5::compute(input);
             if verify_func(&hash) {
                 let mut ctx = ctx.lock().unwrap();
                 ctx.result = Some(i);
                 return;
             }
-            md5.reset();
         }
     }
 }
 
 fn find_number<F>(secret_key: &str, verify_func: F) -> Option<usize>
 where
-    F: Fn(&[u8]) -> bool + Copy + Send + 'static,
+    F: Fn(&md5::Digest) -> bool + Copy + Send + 'static,
 {
     let shared_ctx = Arc::new(Mutex::new(Context {
         result: None,
@@ -83,14 +80,12 @@ where
 
 fn part_one(secret_key: &str) -> Option<usize> {
     find_number(secret_key, |hash| {
-        debug_assert!(hash.len() == 16);
         hash[0] == 0 && hash[1] == 0 && hash[2] <= 0x0f
     })
 }
 
 fn part_two(secret_key: &str) -> Option<usize> {
     find_number(secret_key, |hash| {
-        debug_assert!(hash.len() == 16);
         hash[0] == 0 && hash[1] == 0 && hash[2] == 0
     })
 }

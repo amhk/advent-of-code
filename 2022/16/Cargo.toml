@@ -5,8 +5,8 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.66"
+anyhow = "1.0.75"
 aoc = { path = "../../aoc" }
 itertools = "0.10.5"
-regex = "1.7.0"
+regex = "1.10.2"
 rustc-hash = "1.1.0"

@@ -7,4 +7,4 @@ edition = "2021"
 [dependencies]
 fancy-regex = "0.4"
 lazy_static = "1.4"
-regex = "1.4"
+regex = "1.10"

@@ -5,7 +5,7 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.66"
-rayon = "1.6.1"
-regex = "1.7.0"
+anyhow = "1.0.75"
+rayon = "1.8.0"
+regex = "1.10.2"
 rustc-hash = "1.1.0"

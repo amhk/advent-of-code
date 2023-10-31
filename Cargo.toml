@@ -6,3 +6,4 @@ members = [
 exclude = [
     "2021/24"
 ]
+resolver = "2"

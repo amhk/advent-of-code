@@ -52,21 +52,17 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.66"
+aoc = { path = "../../aoc" }
 EOF
 
 # - <day>/src/main.rs
 cat >"${dir}/src/main.rs" <<EOF
-use anyhow::{Context, Result};
+use anyhow::Result;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-
+    aoc::run!(part_one(input))?;
+    aoc::run!(part_two(input))?;
     Ok(())
 }
 

@@ -4,15 +4,8 @@ use anyhow::{bail, ensure, Context, Result};
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 78342931359552);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 3296135418820);
-
+    aoc::run!(part_one(input), 78342931359552)?;
+    aoc::run!(part_two(input), 3296135418820)?;
     Ok(())
 }
 

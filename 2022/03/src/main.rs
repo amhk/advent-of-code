@@ -1,16 +1,11 @@
-use anyhow::{bail, ensure, Context, Result};
+use anyhow::{bail, ensure, Result};
 use itertools::Itertools;
 use std::collections::BTreeSet;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-
+    aoc::run!(part_one(input), 8139)?;
+    aoc::run!(part_two(input), 2668)?;
     Ok(())
 }
 

@@ -6,16 +6,11 @@ use regex::{Captures, Regex};
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
     let space = parse(input)?;
-
-    let answer = part_one(&space, 2_000_000).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 6275922);
-
-    let answer =
-        part_two(&space, (0, 0), (4_000_000, 4_000_000)).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 11747175442119);
-
+    aoc::run!(part_one(&space, 2_000_000), 6275922)?;
+    aoc::run!(
+        part_two(&space, (0, 0), (4_000_000, 4_000_000)),
+        11747175442119
+    )?;
     Ok(())
 }
 

@@ -425,6 +425,7 @@ name = "aoc-2022-01"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "itertools 0.10.5",
 ]
 
@@ -433,6 +434,7 @@ name = "aoc-2022-02"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -440,6 +442,7 @@ name = "aoc-2022-03"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "itertools 0.10.5",
 ]
 
@@ -448,6 +451,7 @@ name = "aoc-2022-04"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "once_cell",
  "regex",
 ]
@@ -457,6 +461,7 @@ name = "aoc-2022-05"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "once_cell",
  "regex",
 ]
@@ -466,6 +471,7 @@ name = "aoc-2022-06"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -473,6 +479,7 @@ name = "aoc-2022-07"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -480,6 +487,7 @@ name = "aoc-2022-08"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -487,6 +495,7 @@ name = "aoc-2022-09"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -494,6 +503,7 @@ name = "aoc-2022-10"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -501,6 +511,7 @@ name = "aoc-2022-11"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "once_cell",
  "regex",
 ]
@@ -518,6 +529,7 @@ name = "aoc-2022-13"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -525,6 +537,7 @@ name = "aoc-2022-14"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -532,6 +545,7 @@ name = "aoc-2022-15"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "regex",
 ]
 
@@ -551,6 +565,7 @@ name = "aoc-2022-17"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -558,6 +573,7 @@ name = "aoc-2022-18"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "rustc-hash",
 ]
 
@@ -566,6 +582,7 @@ name = "aoc-2022-19"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "rayon",
  "regex",
  "rustc-hash",
@@ -576,6 +593,7 @@ name = "aoc-2022-20"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -583,6 +601,7 @@ name = "aoc-2022-21"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]
@@ -590,6 +609,7 @@ name = "aoc-2022-22"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "regex",
 ]
 
@@ -598,6 +618,7 @@ name = "aoc-2022-23"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "rustc-hash",
 ]
 
@@ -614,6 +635,7 @@ name = "aoc-2022-25"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
 ]
 
 [[package]]

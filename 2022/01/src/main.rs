@@ -3,13 +3,8 @@ use itertools::Itertools;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-
+    aoc::run!(part_one(input), 70764)?;
+    aoc::run!(part_two(input), 203905)?;
     Ok(())
 }
 

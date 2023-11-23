@@ -6,15 +6,8 @@ use rustc_hash::FxHashMap;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 1862);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 2422);
-
+    aoc::run!(part_one(input), 1862)?;
+    aoc::run!(part_two(input), 2422)?;
     Ok(())
 }
 

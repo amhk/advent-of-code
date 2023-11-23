@@ -3,15 +3,8 @@ use rustc_hash::{FxHashMap, FxHashSet};
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 4052);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 978);
-
+    aoc::run!(part_one(input), 4052)?;
+    aoc::run!(part_two(input), 978)?;
     Ok(())
 }
 

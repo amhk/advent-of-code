@@ -1,13 +1,9 @@
-use anyhow::{Context, Result};
+use anyhow::Result;
 use std::fmt::Display;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(format!("{}", answer), "122-0==-=211==-2-200");
-
+    aoc::run_custom_check!(part_one(input), |s| s.to_string() == "122-0==-=211==-2-200")?;
     Ok(())
 }
 

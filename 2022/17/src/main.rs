@@ -1,18 +1,10 @@
+use anyhow::{bail, Result};
 use std::collections::HashMap;
-
-use anyhow::{bail, Context, Result};
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 3133);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 1547953216393);
-
+    aoc::run!(part_one(input), 3133)?;
+    aoc::run!(part_two(input), 1547953216393)?;
     Ok(())
 }
 

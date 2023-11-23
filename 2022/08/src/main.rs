@@ -120,13 +120,8 @@ impl TryFrom<&str> for Grid {
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-
+    aoc::run!(part_one(input), 1845)?;
+    aoc::run!(part_two(input), 230112)?;
     Ok(())
 }
 

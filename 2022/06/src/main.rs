@@ -3,13 +3,8 @@ use std::collections::BTreeSet;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-
+    aoc::run!(part_one(input), 1142)?;
+    aoc::run!(part_two(input), 2803)?;
     Ok(())
 }
 
@@ -30,12 +25,12 @@ fn scan<const N: usize>(input: &str) -> Option<usize> {
     None
 }
 
-fn part_one(input: &str) -> Option<usize> {
-    scan::<4>(input)
+fn part_one(input: &str) -> Result<usize> {
+    scan::<4>(input).context("no solution found for part one")
 }
 
-fn part_two(input: &str) -> Option<usize> {
-    scan::<14>(input)
+fn part_two(input: &str) -> Result<usize> {
+    scan::<14>(input).context("no solution found for part two")
 }
 
 #[cfg(test)]

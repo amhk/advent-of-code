@@ -15,99 +15,99 @@ fn main() -> Result<()> {
     let offsets = [(1, 0), (2, 0), (1, 1), (0, 2), (1, 2), (0, 3)];
     let input = include_str!("input.txt");
 
-    let answer = solve(
-        input,
-        50,
-        offsets,
-        [
-            (
-                Warp::new(4, 0),
-                Warp::new(1, 0),
-                Warp::new(2, 0),
-                Warp::new(1, 0),
-            ),
-            (
-                Warp::new(1, 0),
-                Warp::new(0, 0),
-                Warp::new(1, 0),
-                Warp::new(0, 0),
-            ),
-            (
-                Warp::new(0, 0),
-                Warp::new(2, 0),
-                Warp::new(4, 0),
-                Warp::new(2, 0),
-            ),
-            (
-                Warp::new(5, 0),
-                Warp::new(4, 0),
-                Warp::new(5, 0),
-                Warp::new(4, 0),
-            ),
-            (
-                Warp::new(2, 0),
-                Warp::new(3, 0),
-                Warp::new(0, 0),
-                Warp::new(3, 0),
-            ),
-            (
-                Warp::new(3, 0),
-                Warp::new(5, 0),
-                Warp::new(3, 0),
-                Warp::new(5, 0),
-            ),
-        ],
-    )
-    .context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 80_392);
+    aoc::run!(
+        solve(
+            input,
+            50,
+            offsets,
+            [
+                (
+                    Warp::new(4, 0),
+                    Warp::new(1, 0),
+                    Warp::new(2, 0),
+                    Warp::new(1, 0),
+                ),
+                (
+                    Warp::new(1, 0),
+                    Warp::new(0, 0),
+                    Warp::new(1, 0),
+                    Warp::new(0, 0),
+                ),
+                (
+                    Warp::new(0, 0),
+                    Warp::new(2, 0),
+                    Warp::new(4, 0),
+                    Warp::new(2, 0),
+                ),
+                (
+                    Warp::new(5, 0),
+                    Warp::new(4, 0),
+                    Warp::new(5, 0),
+                    Warp::new(4, 0),
+                ),
+                (
+                    Warp::new(2, 0),
+                    Warp::new(3, 0),
+                    Warp::new(0, 0),
+                    Warp::new(3, 0),
+                ),
+                (
+                    Warp::new(3, 0),
+                    Warp::new(5, 0),
+                    Warp::new(3, 0),
+                    Warp::new(5, 0),
+                ),
+            ],
+        ),
+        80_392
+    )?;
 
-    let answer = solve(
-        input,
-        50,
-        offsets,
-        [
-            (
-                Warp::new(5, 3),
-                Warp::new(1, 0),
-                Warp::new(2, 0),
-                Warp::new(3, 2),
-            ),
-            (
-                Warp::new(5, 0),
-                Warp::new(4, 2),
-                Warp::new(2, 3),
-                Warp::new(0, 0),
-            ),
-            (
-                Warp::new(0, 0),
-                Warp::new(1, 1),
-                Warp::new(4, 0),
-                Warp::new(3, 1),
-            ),
-            (
-                Warp::new(2, 3),
-                Warp::new(4, 0),
-                Warp::new(5, 0),
-                Warp::new(0, 2),
-            ),
-            (
-                Warp::new(2, 0),
-                Warp::new(1, 2),
-                Warp::new(5, 3),
-                Warp::new(3, 0),
-            ),
-            (
-                Warp::new(3, 0),
-                Warp::new(4, 1),
-                Warp::new(1, 0),
-                Warp::new(0, 1),
-            ),
-        ],
-    )
-    .context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 19_534);
+    aoc::run!(
+        solve(
+            input,
+            50,
+            offsets,
+            [
+                (
+                    Warp::new(5, 3),
+                    Warp::new(1, 0),
+                    Warp::new(2, 0),
+                    Warp::new(3, 2),
+                ),
+                (
+                    Warp::new(5, 0),
+                    Warp::new(4, 2),
+                    Warp::new(2, 3),
+                    Warp::new(0, 0),
+                ),
+                (
+                    Warp::new(0, 0),
+                    Warp::new(1, 1),
+                    Warp::new(4, 0),
+                    Warp::new(3, 1),
+                ),
+                (
+                    Warp::new(2, 3),
+                    Warp::new(4, 0),
+                    Warp::new(5, 0),
+                    Warp::new(0, 2),
+                ),
+                (
+                    Warp::new(2, 0),
+                    Warp::new(1, 2),
+                    Warp::new(5, 3),
+                    Warp::new(3, 0),
+                ),
+                (
+                    Warp::new(3, 0),
+                    Warp::new(4, 1),
+                    Warp::new(1, 0),
+                    Warp::new(0, 1),
+                ),
+            ],
+        ),
+        19_534
+    )?;
 
     Ok(())
 }

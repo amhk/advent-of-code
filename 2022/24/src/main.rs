@@ -10,15 +10,8 @@ const END_NODE: (XY, usize) = ((usize::MAX, usize::MAX), usize::MAX);
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 299);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 899);
-
+    aoc::run!(part_one(input), 299)?;
+    aoc::run!(part_two(input), 899)?;
     Ok(())
 }
 

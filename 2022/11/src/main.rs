@@ -4,15 +4,8 @@ use regex::Regex;
 
 fn main() -> Result<()> {
     let input = include_str!("input.txt");
-
-    let answer = part_one(input).context("no solution for part one")?;
-    println!("Part 1: {}", answer);
-    assert_eq!(answer, 101_436);
-
-    let answer = part_two(input).context("no solution for part two")?;
-    println!("Part 2: {}", answer);
-    assert_eq!(answer, 19_754_471_646);
-
+    aoc::run!(part_one(input), 101_436)?;
+    aoc::run!(part_two(input), 19_754_471_646)?;
     Ok(())
 }
 

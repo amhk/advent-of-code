@@ -201,6 +201,7 @@ impl TryFrom<&str> for Box<Node> {
         while let Some(ch) = chars.pop() {
             match ch {
                 '[' => stack.push(Token::OpeningBrace),
+                #[allow(clippy::never_loop)]
                 ']' => loop {
                     match stack.pop() {
                         None => return Err(Error::BadInput),

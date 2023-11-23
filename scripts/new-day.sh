@@ -51,7 +51,7 @@ authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.66"
+anyhow = "1.0"
 aoc = { path = "../../aoc" }
 EOF
 

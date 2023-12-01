@@ -80,7 +80,7 @@ where
         print_error(&msg);
         bail!(format!("answer not in expected range: {}", msg));
     }
-    print_ok(&value.to_string());
+    print_maybe(&value.to_string());
     Ok(())
 }
 

@@ -48,7 +48,7 @@ where
         }
     };
     if expected_value != value {
-        let msg = format!("{} \u{22} {}", value, expected_value);
+        let msg = format!("{} \u{2260} {}", value, expected_value);
         print_error(&msg);
         bail!(format!("answer does not match expected value: {}", msg));
     }

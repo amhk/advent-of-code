@@ -54,6 +54,7 @@ do
             bad_patterns=$(cargo expand --package=$p 2>/dev/null | grep \
                 -e 'dbg!(.*)' \
                 -e 'println!(.*)' \
+                -e 'FIXME' \
                 -e 'aoc::run_with_expected_range(.*)' \
                 -e 'aoc::run(.*)')
             if test -n "$bad_patterns"

@@ -66,7 +66,12 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn part_one(_input: &str) -> Result<usize> {
+fn parse(input: &str) -> Result<()> {
+    todo!();
+}
+
+fn part_one(input: &str) -> Result<usize> {
+    let _ = parse(input)?;
     todo!();
 }
 
@@ -86,6 +91,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn test_part_two() {
         assert_eq!(part_two(INPUT).unwrap(), 0);
     }

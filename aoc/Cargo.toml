@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.75"
 atty = "0.2.14"
+regex = "1.10.2"
 rustc-hash = "1.1.0"

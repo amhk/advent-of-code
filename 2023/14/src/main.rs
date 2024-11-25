@@ -67,7 +67,7 @@ where
     while movement {
         movement = false;
         for xy in keys.iter() {
-            if grid[&(xy)] != State::Sphere {
+            if grid[xy] != State::Sphere {
                 continue;
             }
             let next = func(xy);

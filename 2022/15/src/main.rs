@@ -175,7 +175,7 @@ fn part_two(space: &Space, min: (i32, i32), max: (i32, i32)) -> Result<u128> {
         let width: u32 = ranges.iter().map(|range| range.len()).sum();
         if width == min.0.abs_diff(max.0) {
             debug_assert!(ranges.len() == 2);
-            let x: u128 = ranges.get(0).unwrap().end as u128 + 1;
+            let x: u128 = ranges.first().unwrap().end as u128 + 1;
             return Ok(x * 4_000_000 + current_row as u128);
         }
     }

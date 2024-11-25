@@ -11,6 +11,7 @@ fn main() {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 enum Error {
     BadInput(String),
     ExecOutOfBounds(usize),

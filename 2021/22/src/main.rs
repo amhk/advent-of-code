@@ -303,7 +303,7 @@ mod tests {
 
     #[test]
     fn test_perform_steps() {
-        let steps = vec![
+        let steps = [
             Step {
                 instruction: Instruction::On,
                 cuboid: Cuboid::new(0, 1, 0, 1, 0, 1),

@@ -81,7 +81,7 @@ fn part_two(input: &str) -> Result<u64, Error> {
         node.count = a + b + c;
     }
 
-    nodes.get(0).map_or(Err(Error::BadInput), |n| Ok(n.count))
+    nodes.first().map_or(Err(Error::BadInput), |n| Ok(n.count))
 }
 
 #[cfg(test)]

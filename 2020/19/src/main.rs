@@ -168,7 +168,7 @@ fn parse_input(input: &str) -> Result<(Vec<Node>, &str), Error> {
 
 fn count(input: &str, use_hardcoded_hack: bool) -> Result<usize, Error> {
     let (nodes, input) = parse_input(input)?;
-    let root = nodes.get(0).unwrap();
+    let root = nodes.first().unwrap();
     Ok(input
         .lines()
         .filter(|line| root.matches(use_hardcoded_hack, &nodes, line))
@@ -190,7 +190,7 @@ mod tests {
     #[test]
     fn test_node_matches_only_leafs() {
         let nodes = vec![Node::Leaf('a')];
-        let root = nodes.get(0).unwrap();
+        let root = nodes.first().unwrap();
         assert!(root.matches(false, &nodes, "a"));
         assert!(!root.matches(false, &nodes, "b"));
     }
@@ -198,7 +198,7 @@ mod tests {
     #[test]
     fn test_node_matches_single_branch_depth_1() {
         let nodes = vec![Node::Tree(vec![vec![1]]), Node::Leaf('a')];
-        let root = nodes.get(0).unwrap();
+        let root = nodes.first().unwrap();
         assert!(root.matches(false, &nodes, "a"));
         assert!(!root.matches(false, &nodes, "b"));
     }
@@ -210,7 +210,7 @@ mod tests {
             Node::Tree(vec![vec![2]]),
             Node::Leaf('a'),
         ];
-        let root = nodes.get(0).unwrap();
+        let root = nodes.first().unwrap();
         assert!(root.matches(false, &nodes, "a"));
         assert!(!root.matches(false, &nodes, "b"));
     }
@@ -222,7 +222,7 @@ mod tests {
             Node::Leaf('a'),
             Node::Leaf('b'),
         ];
-        let root = nodes.get(0).unwrap();
+        let root = nodes.first().unwrap();
         assert!(root.matches(false, &nodes, "a"));
         assert!(root.matches(false, &nodes, "b"));
     }
@@ -230,7 +230,7 @@ mod tests {
     #[test]
     fn test_node_matches_test_input() {
         let (nodes, _) = parse_input(INPUT).unwrap();
-        let root = nodes.get(0).unwrap();
+        let root = nodes.first().unwrap();
 
         assert!(root.matches(false, &nodes, "ababbb"));
         assert!(root.matches(false, &nodes, "abbbab"));

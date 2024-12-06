@@ -24,7 +24,7 @@ dependencies = [
  "anyhow",
  "atty",
  "regex",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -136,7 +136,7 @@ version = "0.1.0"
 name = "aoc-2015-18"
 version = "0.1.0"
 dependencies = [
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -258,7 +258,7 @@ dependencies = [
 name = "aoc-2020-15"
 version = "0.1.0"
 dependencies = [
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -369,7 +369,7 @@ version = "0.1.0"
 name = "aoc-2021-15"
 version = "0.1.0"
 dependencies = [
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -414,7 +414,7 @@ name = "aoc-2021-23"
 version = "0.1.0"
 dependencies = [
  "lazy_static",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -558,7 +558,7 @@ dependencies = [
  "aoc",
  "itertools 0.10.5",
  "regex",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -575,7 +575,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "aoc",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -586,7 +586,7 @@ dependencies = [
  "aoc",
  "rayon",
  "regex",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -620,7 +620,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "aoc",
- "rustc-hash",
+ "rustc-hash 1.1.0",
 ]
 
 [[package]]
@@ -858,6 +858,15 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "aoc",
+]
+
+[[package]]
+name = "aoc-2024-06"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aoc",
+ "rustc-hash 2.1.0",
 ]
 
 [[package]]
@@ -1195,6 +1204,12 @@ name = "rustc-hash"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
+
+[[package]]
+name = "rustc-hash"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7fb8039b3032c191086b10f11f319a6e99e1e82889c5cc6046f515c9db1d497"
 
 [[package]]
 name = "ryu"

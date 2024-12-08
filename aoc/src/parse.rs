@@ -1,6 +1,8 @@
-use anyhow::anyhow;
+use anyhow::{anyhow, ensure};
 use regex::Regex;
 use std::fmt::Display;
+
+use crate::{BoundingBox, XY};
 
 const REGEX_NOT_FOUND: &str = "regex not found in \"{haystack}\"";
 
@@ -282,4 +284,90 @@ where
         to_g(g).map_err(|err| anyhow!("group 7: \"{g}\": {err}"))?,
         to_h(h).map_err(|err| anyhow!("group 8: \"{h}\": {err}"))?,
     ))
+}
+
+/// Parse an AOC input grid. These always look like this:
+///
+/// ..A..
+/// A....
+/// ..Ax.
+/// .x...
+///
+/// For each character (that is not a newline), call f with the character's XY coordinate and
+/// character value.
+///
+/// Returns the bounding box of the grid.
+pub fn parse_grid<F>(input: &str, mut f: F) -> anyhow::Result<BoundingBox>
+where
+    F: FnMut(XY, char) -> anyhow::Result<()>,
+{
+    let input = input.trim();
+    if input.is_empty() {
+        return Ok(BoundingBox::new((0, 0).into(), (0, 0).into()));
+    }
+    let max_x = input.lines().next().expect("non-empty input").len();
+    for line in input.lines() {
+        ensure!(max_x == line.len());
+    }
+    let mut x: i32 = 0;
+    let mut y: i32 = 0;
+    for ch in input.chars() {
+        if ch == '\n' {
+            x = 0;
+            y += 1;
+        } else {
+            f((x, y).into(), ch)?;
+            x += 1;
+        }
+    }
+    Ok(BoundingBox::new(
+        (0, 0).into(),
+        (max_x as i32 - 1, y).into(),
+    ))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_grid() {
+        let input = "ab\ncd\nef\n";
+        let bb = parse_grid(&input, |xy, ch| {
+            let expected = match ch {
+                'a' => (0, 0).into(),
+                'b' => (1, 0).into(),
+                'c' => (0, 1).into(),
+                'd' => (1, 1).into(),
+                'e' => (0, 2).into(),
+                'f' => (1, 2).into(),
+                _ => panic!("unexpected {:?} {ch}", xy),
+            };
+            assert_eq!(xy, expected);
+            Ok(())
+        })
+        .unwrap();
+        assert_eq!(bb, BoundingBox::new((0, 0).into(), (1, 2).into()));
+    }
+
+    #[test]
+    fn test_parse_grid_empty() {
+        let input = "";
+        let bb = parse_grid(&input, |_, _| Ok(())).unwrap();
+        assert_eq!(bb, BoundingBox::new((0, 0).into(), (0, 0).into()));
+    }
+
+    #[test]
+    fn test_parse_grid_different_length_lines() {
+        let input = "..\n...\n";
+        assert!(parse_grid(&input, |_, _| Ok(())).is_err());
+    }
+
+    #[test]
+    fn test_parse_grid_trailing_newline_does_not_matter() {
+        let input = "...\n...\n...\n...\n";
+        let bb1 = parse_grid(&input, |_, _| Ok(())).unwrap();
+        let bb2 = parse_grid(&input.trim(), |_, _| Ok(())).unwrap();
+        assert_eq!(bb1, bb2);
+    }
 }

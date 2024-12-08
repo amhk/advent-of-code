@@ -1,7 +1,10 @@
+mod bounding_box;
 mod graph;
 mod parse;
 mod runner;
+mod xy;
 
+pub use bounding_box::BoundingBox;
 pub use graph::Graph;
 pub use parse::parse1;
 pub use parse::parse2;
@@ -11,10 +14,12 @@ pub use parse::parse5;
 pub use parse::parse6;
 pub use parse::parse7;
 pub use parse::parse8;
+pub use parse::parse_grid;
 pub use runner::run;
 pub use runner::run_with_expected_custom_check;
 pub use runner::run_with_expected_range;
 pub use runner::run_with_expected_value;
+pub use xy::XY;
 
 #[macro_export]
 macro_rules! run {

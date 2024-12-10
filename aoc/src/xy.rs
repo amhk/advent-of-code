@@ -4,8 +4,21 @@ use std::ops::{Add, AddAssign, Sub, SubAssign};
 /// A pair of (x, y) coordinates.
 #[derive(PartialEq, Eq, PartialOrd, Ord, Copy, Clone, Hash)]
 pub struct XY {
-    pub(crate) x: i32,
-    pub(crate) y: i32,
+    pub x: i32,
+    pub y: i32,
+}
+
+impl XY {
+    /// Get the four neighbouring XY coordinates (north, east, south and west) of this XY
+    /// coordinate.
+    pub fn four_neighbours(&self) -> [XY; 4] {
+        [
+            (self.x, self.y - 1).into(),
+            (self.x + 1, self.y).into(),
+            (self.x, self.y + 1).into(),
+            (self.x - 1, self.y).into(),
+        ]
+    }
 }
 
 impl From<(i32, i32)> for XY {
@@ -98,6 +111,16 @@ impl Debug for XY {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_four_neighbours() {
+        let xy = XY { x: 1, y: 2 };
+        let mut actual = xy.four_neighbours();
+        actual.sort();
+        let mut expected = [(1, 1).into(), (2, 2).into(), (1, 3).into(), (0, 2).into()];
+        expected.sort();
+        assert_eq!(actual, expected);
+    }
 
     #[test]
     fn test_from() {

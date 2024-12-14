@@ -12,12 +12,47 @@ impl XY {
     /// Get the four neighbouring XY coordinates (north, east, south and west) of this XY
     /// coordinate.
     pub fn four_neighbours(&self) -> [XY; 4] {
-        [
-            (self.x, self.y - 1).into(),
-            (self.x + 1, self.y).into(),
-            (self.x, self.y + 1).into(),
-            (self.x - 1, self.y).into(),
-        ]
+        [self.north(), self.east(), self.south(), self.west()]
+    }
+
+    /// Get the XY coordinate one step north of this one
+    pub fn north(&self) -> XY {
+        (self.x, self.y - 1).into()
+    }
+
+    /// Get the XY coordinate one step north-east of this one
+    pub fn north_east(&self) -> XY {
+        (self.x + 1, self.y - 1).into()
+    }
+
+    /// Get the XY coordinate one step east of this one
+    pub fn east(&self) -> XY {
+        (self.x + 1, self.y).into()
+    }
+
+    /// Get the XY coordinate one step south-east of this one
+    pub fn south_east(&self) -> XY {
+        (self.x + 1, self.y + 1).into()
+    }
+
+    /// Get the XY coordinate one step south of this one
+    pub fn south(&self) -> XY {
+        (self.x, self.y + 1).into()
+    }
+
+    /// Get the XY coordinate one step south-west of this one
+    pub fn south_west(&self) -> XY {
+        (self.x - 1, self.y + 1).into()
+    }
+
+    /// Get the XY coordinate one step west of this one
+    pub fn west(&self) -> XY {
+        (self.x - 1, self.y).into()
+    }
+
+    /// Get the XY coordinate one step north-west of this one
+    pub fn north_west(&self) -> XY {
+        (self.x - 1, self.y - 1).into()
     }
 }
 
@@ -120,6 +155,54 @@ mod tests {
         let mut expected = [(1, 1).into(), (2, 2).into(), (1, 3).into(), (0, 2).into()];
         expected.sort();
         assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn test_north() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.north(), XY { x: 1, y: 1 });
+    }
+
+    #[test]
+    fn test_north_east() {
+        let xy = XY { x: 0, y: 0 };
+        assert_eq!(xy.north_east(), XY { x: 1, y: -1 });
+    }
+
+    #[test]
+    fn test_east() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.east(), XY { x: 2, y: 2 });
+    }
+
+    #[test]
+    fn test_south_east() {
+        let xy = XY { x: 0, y: 0 };
+        assert_eq!(xy.south_east(), XY { x: 1, y: 1 });
+    }
+
+    #[test]
+    fn test_south() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.south(), XY { x: 1, y: 3 });
+    }
+
+    #[test]
+    fn test_south_west() {
+        let xy = XY { x: 0, y: 0 };
+        assert_eq!(xy.south_west(), XY { x: -1, y: 1 });
+    }
+
+    #[test]
+    fn test_west() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.west(), XY { x: 0, y: 2 });
+    }
+
+    #[test]
+    fn test_north_west() {
+        let xy = XY { x: 0, y: 0 };
+        assert_eq!(xy.north_west(), XY { x: -1, y: -1 });
     }
 
     #[test]

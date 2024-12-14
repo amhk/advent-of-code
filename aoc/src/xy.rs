@@ -1,3 +1,4 @@
+use crate::Direction;
 use std::fmt::Debug;
 use std::ops::{Add, AddAssign, Sub, SubAssign};
 
@@ -53,6 +54,46 @@ impl XY {
     /// Get the XY coordinate one step north-west of this one
     pub fn north_west(&self) -> XY {
         (self.x - 1, self.y - 1).into()
+    }
+
+    /// Get the XY coordinate one step ahead in the given direction
+    pub fn forward(&self, dir: Direction) -> XY {
+        match dir {
+            Direction::North => self.north(),
+            Direction::East => self.east(),
+            Direction::South => self.south(),
+            Direction::West => self.west(),
+        }
+    }
+
+    /// Get the XY coordinate one step to the right of the given direction
+    pub fn right(&self, dir: Direction) -> XY {
+        match dir {
+            Direction::North => self.east(),
+            Direction::East => self.south(),
+            Direction::South => self.west(),
+            Direction::West => self.north(),
+        }
+    }
+
+    /// Get the XY coordinate one step to the left of the given direction
+    pub fn left(&self, dir: Direction) -> XY {
+        match dir {
+            Direction::North => self.west(),
+            Direction::East => self.north(),
+            Direction::South => self.east(),
+            Direction::West => self.south(),
+        }
+    }
+
+    /// Get the XY coordinate one step back in the given direction
+    pub fn behind(&self, dir: Direction) -> XY {
+        match dir {
+            Direction::North => self.south(),
+            Direction::East => self.west(),
+            Direction::South => self.north(),
+            Direction::West => self.east(),
+        }
     }
 }
 
@@ -203,6 +244,30 @@ mod tests {
     fn test_north_west() {
         let xy = XY { x: 0, y: 0 };
         assert_eq!(xy.north_west(), XY { x: -1, y: -1 });
+    }
+
+    #[test]
+    fn test_forward() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.forward(Direction::East), XY { x: 2, y: 2 });
+    }
+
+    #[test]
+    fn test_left() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.left(Direction::East), XY { x: 1, y: 1 });
+    }
+
+    #[test]
+    fn test_right() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.right(Direction::East), XY { x: 1, y: 3 });
+    }
+
+    #[test]
+    fn test_behind() {
+        let xy = XY { x: 1, y: 2 };
+        assert_eq!(xy.behind(Direction::East), XY { x: 0, y: 2 });
     }
 
     #[test]

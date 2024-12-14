@@ -1,10 +1,12 @@
 mod bounding_box;
+mod direction;
 mod graph;
 mod parse;
 mod runner;
 mod xy;
 
 pub use bounding_box::BoundingBox;
+pub use direction::Direction;
 pub use graph::Graph;
 pub use parse::parse1;
 pub use parse::parse2;

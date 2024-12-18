@@ -1,6 +1,6 @@
 use crate::Direction;
 use std::fmt::Debug;
-use std::ops::{Add, AddAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, Sub, SubAssign};
 
 /// A pair of (x, y) coordinates.
 #[derive(PartialEq, Eq, PartialOrd, Ord, Copy, Clone, Hash)]
@@ -178,6 +178,46 @@ impl_sub_assign! {&mut XY, XY}
 impl_sub_assign! {XY, &XY}
 impl_sub_assign! {&mut XY, &XY}
 
+macro_rules! impl_mul_for_xy {
+    ($lhs: ty, $rhs: ty) => {
+        impl Mul<$rhs> for $lhs {
+            type Output = XY;
+
+            fn mul(self, rhs: $rhs) -> Self::Output {
+                XY {
+                    x: self.x * rhs,
+                    y: self.y * rhs,
+                }
+            }
+        }
+    };
+}
+
+impl_mul_for_xy! { XY, i32 }
+impl_mul_for_xy! { XY, &i32 }
+impl_mul_for_xy! { &XY, i32 }
+impl_mul_for_xy! { &XY, &i32 }
+
+macro_rules! impl_mul_for_i32 {
+    ($lhs: ty, $rhs: ty) => {
+        impl Mul<$rhs> for $lhs {
+            type Output = XY;
+
+            fn mul(self, rhs: $rhs) -> Self::Output {
+                XY {
+                    x: self * rhs.x,
+                    y: self * rhs.y,
+                }
+            }
+        }
+    };
+}
+
+impl_mul_for_i32! { i32, XY }
+impl_mul_for_i32! { i32, &XY }
+impl_mul_for_i32! { &i32, XY }
+impl_mul_for_i32! { &i32, &XY }
+
 impl Debug for XY {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}, {})", self.x, self.y)
@@ -343,6 +383,19 @@ mod tests {
         let mut a = &mut a;
         a -= &b;
         assert_eq!(*a, XY { x: -9, y: -18 });
+    }
+
+    #[test]
+    fn test_mul() {
+        let a: XY = (1, 3).into();
+        assert_eq!(a * 5, (5, 15).into());
+        assert_eq!(5 * a, (5, 15).into());
+        assert_eq!(&a * 5, (5, 15).into());
+        assert_eq!(&5 * a, (5, 15).into());
+        assert_eq!(a * &5, (5, 15).into());
+        assert_eq!(5 * &a, (5, 15).into());
+        assert_eq!(&a * &5, (5, 15).into());
+        assert_eq!(&5 * &a, (5, 15).into());
     }
 
     #[test]

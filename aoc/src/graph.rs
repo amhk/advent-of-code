@@ -1,13 +1,16 @@
 use rustc_hash::FxHashMap;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
+use std::fmt::Debug;
 use std::hash::Hash;
 
+#[derive(Debug)]
 pub struct Edge<NodeId> {
     pub dest: NodeId,
     pub cost: u32,
 }
 
+#[derive(Debug)]
 pub struct Node<NodeId> {
     edges: Vec<Edge<NodeId>>,
 }
@@ -18,6 +21,7 @@ impl<NodeId> Node<NodeId> {
     }
 }
 
+#[derive(Debug)]
 pub struct Graph<NodeId> {
     nodes: FxHashMap<NodeId, Node<NodeId>>,
 }
@@ -27,6 +31,7 @@ where
     NodeId: Eq + Hash,
     NodeId: Ord + PartialOrd,
     NodeId: Clone,
+    NodeId: Debug,
 {
     pub fn add_node(&mut self, id: NodeId) -> Option<Node<NodeId>> {
         self.nodes.insert(id, Node { edges: Vec::new() })
@@ -88,6 +93,22 @@ where
         }
 
         None
+    }
+
+    pub fn graphviz(&self) -> String {
+        let mut dot = String::new();
+        dot.push_str("digraph G {\n");
+        for (src, edges) in self.nodes.iter() {
+            dot.push_str(&format!("    \"{:?}\";\n", src));
+            for edge in &edges.edges {
+                dot.push_str(&format!(
+                    "    \"{:?}\" -> \"{:?}\" [label=\"{}\"];\n",
+                    src, edge.dest, edge.cost
+                ));
+            }
+        }
+        dot.push_str("}\n");
+        dot
     }
 }
 

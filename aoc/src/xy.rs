@@ -16,6 +16,20 @@ impl XY {
         [self.north(), self.east(), self.south(), self.west()]
     }
 
+    /// Get the eight neighbouring XY coordinates of this XY coordinate.
+    pub fn eight_neighbours(&self) -> [XY; 8] {
+        [
+            self.north(),
+            self.north_east(),
+            self.east(),
+            self.south_east(),
+            self.south(),
+            self.south_west(),
+            self.west(),
+            self.north_west(),
+        ]
+    }
+
     /// Get the XY coordinate one step north of this one
     pub fn north(&self) -> XY {
         (self.x, self.y - 1).into()
@@ -234,6 +248,25 @@ mod tests {
         let mut actual = xy.four_neighbours();
         actual.sort();
         let mut expected = [(1, 1).into(), (2, 2).into(), (1, 3).into(), (0, 2).into()];
+        expected.sort();
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn test_eight_neighbours() {
+        let xy = XY { x: 1, y: 2 };
+        let mut actual = xy.eight_neighbours();
+        actual.sort();
+        let mut expected = [
+            (1, 1).into(),
+            (2, 1).into(),
+            (2, 2).into(),
+            (2, 3).into(),
+            (1, 3).into(),
+            (0, 3).into(),
+            (0, 2).into(),
+            (0, 1).into(),
+        ];
         expected.sort();
         assert_eq!(actual, expected);
     }

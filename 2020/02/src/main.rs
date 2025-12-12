@@ -33,7 +33,7 @@ impl<'a> Password<'a> {
     }
 }
 
-fn split_input(input: &str) -> Vec<Password> {
+fn split_input(input: &str) -> Vec<Password<'_>> {
     let regex = Regex::new(r"(\d+)-(\d+) ([a-z]): ([a-z]+)").unwrap();
     regex
         .captures_iter(input)

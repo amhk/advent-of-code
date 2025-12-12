@@ -47,7 +47,7 @@ fn find_combinations(numbers: &[u32], target_sum: u32) -> Vec<Vec<u32>> {
         }
     }
 
-    debug_assert!(!numbers.iter().any(|&n| n == 0));
+    debug_assert!(!numbers.contains(&0));
     let mut out = Vec::new();
     gen(&[], numbers, target_sum, &mut out);
     out

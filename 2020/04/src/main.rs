@@ -60,29 +60,29 @@ impl<'a> Passport<'a> {
 
 fn byr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| (1920..=2002).contains(&year))
+        .is_ok_and(|year| (1920..=2002).contains(&year))
 }
 
 fn iyr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| (2010..=2020).contains(&year))
+        .is_ok_and(|year| (2010..=2020).contains(&year))
 }
 
 fn eyr_valid(s: &str) -> bool {
     s.parse::<u32>()
-        .map_or(false, |year| (2020..=2030).contains(&year))
+        .is_ok_and(|year| (2020..=2030).contains(&year))
 }
 
 fn hgt_valid(s: &str) -> bool {
     if let Some(s) = s.strip_suffix("cm") {
         return s
             .parse::<u32>()
-            .map_or(false, |height| (150..=193).contains(&height));
+            .is_ok_and(|height| (150..=193).contains(&height));
     }
     if let Some(s) = s.strip_suffix("in") {
         return s
             .parse::<u32>()
-            .map_or(false, |height| (59..76).contains(&height));
+            .is_ok_and(|height| (59..76).contains(&height));
     }
     false
 }
@@ -105,7 +105,7 @@ fn pid_valid(s: &str) -> bool {
     RE.is_match(s)
 }
 
-fn parse_input(input: &str) -> Vec<Passport> {
+fn parse_input(input: &str) -> Vec<Passport<'_>> {
     input.split("\n\n").map(Passport::from_str).collect()
 }
 
@@ -128,13 +128,13 @@ fn part_two(input: &str) -> usize {
     parse_input(input)
         .iter()
         .filter(|p| {
-            p.byr.map_or(false, byr_valid)
-                && p.iyr.map_or(false, iyr_valid)
-                && p.eyr.map_or(false, eyr_valid)
-                && p.hgt.map_or(false, hgt_valid)
-                && p.hcl.map_or(false, hcl_valid)
-                && p.ecl.map_or(false, ecl_valid)
-                && p.pid.map_or(false, pid_valid)
+            p.byr.is_some_and(byr_valid)
+                && p.iyr.is_some_and(iyr_valid)
+                && p.eyr.is_some_and(eyr_valid)
+                && p.hgt.is_some_and(hgt_valid)
+                && p.hcl.is_some_and(hcl_valid)
+                && p.ecl.is_some_and(ecl_valid)
+                && p.pid.is_some_and(pid_valid)
         })
         .count()
 }

@@ -69,7 +69,7 @@ fn find_all_paths(graph: &Graph, allowance: usize) -> Result<Vec<Vec<Node>>, Err
         }
 
         // big caves may be visited any number of times
-        if node % 2 == 0 {
+        if node.is_multiple_of(2) {
             return Some(0);
         }
 

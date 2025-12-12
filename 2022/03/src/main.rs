@@ -38,7 +38,7 @@ fn part_one(input: &str) -> Result<usize> {
 
 fn part_two(input: &str) -> Result<usize> {
     ensure!(
-        input.lines().count() % 3 == 0,
+        input.lines().count().is_multiple_of(3),
         "number of input lines must be a multiple of 3"
     );
     let mut sum = 0;

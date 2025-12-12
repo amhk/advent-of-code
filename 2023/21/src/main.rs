@@ -90,7 +90,11 @@ fn solve(input: &str, total_number_of_steps: usize) -> Result<usize> {
     let mut current_frontier: BTreeSet<XY> = BTreeSet::from([start]);
     // odd total_number_of_step: start at 1 because zero moves == one position (the start position)
     // even total_number_of_step: start at 0
-    let mut count = if total_number_of_steps % 2 == 0 { 1 } else { 0 };
+    let mut count = if total_number_of_steps.is_multiple_of(2) {
+        1
+    } else {
+        0
+    };
     for step in 1..=total_number_of_steps {
         let mut next_frontier: BTreeSet<XY> = BTreeSet::new();
         for origin in current_frontier.iter() {

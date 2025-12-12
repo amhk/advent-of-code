@@ -35,7 +35,7 @@ fn presents_for_house_part_one(house_number: u64) -> u64 {
             if number >= house_number {
                 break;
             }
-            if house_number % number == 0 && !v.contains(&number) {
+            if house_number.is_multiple_of(number) && !v.contains(&number) {
                 v.push(number);
             }
         }
@@ -71,7 +71,10 @@ fn presents_for_house_part_two(house_number: u64) -> u64 {
             if number >= house_number {
                 break;
             }
-            if house_number / number <= 50 && house_number % number == 0 && !v.contains(&number) {
+            if house_number / number <= 50
+                && house_number.is_multiple_of(number)
+                && !v.contains(&number)
+            {
                 v.push(number);
             }
         }

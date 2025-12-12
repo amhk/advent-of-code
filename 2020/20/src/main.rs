@@ -254,7 +254,7 @@ fn flip_iter(iter: &mut impl Iterator<Item = char>) -> impl Iterator<Item = char
             return None;
         }
         let ch = chars[index];
-        if index % side == 0 {
+        if index.is_multiple_of(side) {
             index += 2 * side - 1;
         } else {
             index -= 1;
@@ -274,7 +274,7 @@ fn shrink_iter(iter: &mut impl Iterator<Item = char>) -> impl Iterator<Item = ch
         }
         let ch = chars[index];
         index += 1;
-        while index % side == 0 || index % side == side - 1 {
+        while index.is_multiple_of(side) || index % side == side - 1 {
             index += 1;
         }
         Some(ch)
@@ -292,7 +292,7 @@ fn solve_puzzle0(locked_in: &[PuzzlePiece], left: &[PuzzlePiece]) -> Option<Vec<
     }
 
     let index = locked_in.len();
-    let edge_to_the_west = if index % side == 0 {
+    let edge_to_the_west = if index.is_multiple_of(side) {
         None
     } else {
         Some(locked_in[index - 1].tile.eastern_edge_cached())
@@ -382,7 +382,7 @@ fn count_sea_monsters(data: &str) -> usize {
                 &data[(offset + 2 * text_width)..(offset + text_width * 2 + MASK_WIDTH)],
             ];
 
-            if (offset + MASK_WIDTH) % text_width == 0 {
+            if (offset + MASK_WIDTH).is_multiple_of(text_width) {
                 offset += MASK_WIDTH;
             } else {
                 offset += 1;

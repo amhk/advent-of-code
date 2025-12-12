@@ -91,7 +91,7 @@ fn play_game(initial: &[Id], rounds: usize) -> Vec<Id> {
 }
 
 fn cups_to_magic_string(cups: &[Id]) -> String {
-    assert!(cups.iter().any(|&c| c == 1));
+    assert!(cups.contains(&1));
     assert!(cups.len() > 1);
 
     let mut cups = cups.to_vec();

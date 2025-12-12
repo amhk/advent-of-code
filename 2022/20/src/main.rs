@@ -89,7 +89,7 @@ impl CircularArray {
         self.check_consistency();
     }
 
-    fn iter(&self) -> CircularArrayIterator {
+    fn iter(&self) -> CircularArrayIterator<'_> {
         CircularArrayIterator {
             array: self,
             current: Some(0),

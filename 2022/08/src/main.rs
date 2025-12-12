@@ -128,7 +128,7 @@ fn main() -> Result<()> {
 fn visible_trees_indices(iter: impl Iterator<Item = u32>) -> impl Iterator<Item = usize> {
     let mut max: Option<u32> = None;
     iter.enumerate().filter_map(move |(index, value)| {
-        if max.map_or(true, |max| max < value) {
+        if max.is_none_or(|max| max < value) {
             max = Some(value);
             Some(index)
         } else {

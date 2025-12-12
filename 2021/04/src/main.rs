@@ -26,14 +26,14 @@ struct Board {
 }
 
 impl Board {
-    fn rows(&self) -> Rows {
+    fn rows(&self) -> Rows<'_> {
         Rows {
             board: self,
             offset: 0,
         }
     }
 
-    fn columns(&self) -> Columns {
+    fn columns(&self) -> Columns<'_> {
         Columns {
             board: self,
             offset: 0,

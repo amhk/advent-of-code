@@ -27,7 +27,7 @@ impl Node {
             Node::Node(_, _) => panic!(),
             Node::Leaf(value) => {
                 let left = Box::new(Node::Leaf(value / 2));
-                let right = Box::new(Node::Leaf((value + 1) / 2));
+                let right = Box::new(Node::Leaf(value.div_ceil(2)));
                 *self = Node::Node(left, right);
             }
         }

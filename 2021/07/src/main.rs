@@ -21,14 +21,12 @@ fn parse_input(input: &str) -> Result<Vec<u32>, Error> {
 fn cost_for_index_part_one(values: &[u32], index: u32) -> u32 {
     // u32::abs_diff is nightly only at the time of writing; explicitly spell it out with an
     // if statement instead
-    values.iter().fold(0, |acc, v| {
-        acc + if index < *v { *v - index } else { index - *v }
-    })
+    values.iter().fold(0, |acc, v| acc + (*v).abs_diff(index))
 }
 
 fn cost_for_index_part_two(values: &[u32], index: u32) -> u32 {
     values.iter().fold(0, |acc, v| {
-        let n = if index < *v { *v - index } else { index - *v };
+        let n = (*v).abs_diff(index);
         // 1 + 2 + 3 + ... + n = (n * (n + 1)) / 2
         acc + (n * (n + 1)) / 2
     })

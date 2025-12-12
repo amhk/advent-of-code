@@ -19,7 +19,7 @@ enum Op<'a> {
     Insert(Lens<'a>),
 }
 
-fn parse(input: &str) -> Result<Vec<Op>> {
+fn parse(input: &str) -> Result<Vec<Op<'_>>> {
     input
         .trim()
         .split(',')

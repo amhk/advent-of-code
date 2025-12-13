@@ -1,0 +1,10 @@
+[package]
+name = "aoc-2025-09"
+version = "0.1.0"
+authors = ["Mårten Kongstad <marten.kongstad@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+aoc = { path = "../../aoc" }
+itertools = "0.14.0"
